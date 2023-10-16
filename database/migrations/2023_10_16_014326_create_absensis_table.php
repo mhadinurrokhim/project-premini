@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->time('jam_masuk');
             $table->time('jam_keluar');
-            $table->string('keterangan', 255); $table->unsignedBigInteger('pegawai_id');
+            $table->string('keterangan', 255);
             $table->unsignedBigInteger('pegawai_id');
             $table->foreign('pegawai_id')->references('id')->on('pegawai');
             $table->timestamps();
