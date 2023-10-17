@@ -54,13 +54,13 @@
         <ul class="nav">
           <li class="active ">
             <a href="{{ route('Dashboard') }}">
-              <i class="now-ui-icons design_app"></i>
+              <i class="now-ui-icons users_single-02"></i>
               <p>PEGAWAI</p>
             </a>
           </li>
           <li>
             <a href="{{ route('Absensi') }}">
-              <i class="now-ui-icons education_atom"></i>
+              <i class="mdi:notebook-edit-outline"></i>
               <p>ABSEN</p>
             </a>
           </li>
@@ -134,21 +134,6 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">Action</a>
                   <a class="dropdown-item" href="#">Another action</a>
@@ -168,26 +153,29 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <br><br><br><br>
+
 
       <!-- start tabel-->
       <style>
-  .card {
-    font-size: 1opx; /* Mengatur ukuran font dalam card */
-  }
+        .card {
+          font-size: 1opx; /* Mengatur ukuran font dalam card */
+        }
 
-  .table {
-    font-size: 11px; /* Mengatur ukuran font dalam tabel */
-    color: #FFA500; /* Memberi warna font pada tabel (misalnya merah) */
+        .table {
+          font-size: 11px; /* Mengatur ukuran font dalam tabel */
+          color: #FFA500; /* Memberi warna font pada tabel (misalnya merah) */
 
-  }
-</style>
+        }
+      </style>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="panel-header panel-header-sm">
+      </div>
+      <br><br>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Data Pegawai</h5>
@@ -222,22 +210,30 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
                         <label for="nama">Nama:</label>
                         <input type="text" class="form-control" id="nama">
-                    </div>
-                    <div class="form-group">
+                      </div>
+                      <div class="form-group">
                         <label for="id_pegawai">ID Pegawai:</label>
                         <input type="text" class="form-control" id="id_pegawai">
+                      </div>
                     </div>
-                    <div class="form-group">
+                    <div class="col-6">
+                      <div class="form-group">
                         <label for="jabatan">Jabatan:</label>
                         <input type="text" class="form-control" id="jabatan">
-                    </div>
-                    <div class="form-group">
+                      </div>
+                      <div class="form-group">
                         <label for="no_tlp">No Tlp:</label>
                         <input type="number" class="form-control" id="no_tlp">
+                      </div>
                     </div>
+                  </div>
+                </div>
                     <div class="form-group">
                         <label for="gaji">Gaji:</label>
                         <input type="number" class="form-control" id="gaji">
@@ -245,6 +241,10 @@
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
                         <textarea class="form-control" id="alamat" rows="4"></textarea>
+                    </div>
+                    <div class="">
+                      <label class="form-label" for="foto">Foto:</label>
+                      <input type="file" class="form-control" id="foto">
                     </div>
                 </form>
             </div>

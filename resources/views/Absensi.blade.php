@@ -55,13 +55,13 @@
           <li>
             <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
+              <p>PEGAWAI</p>
             </a>
           </li>
           <li class="active ">
             <a href="{{ route('Absensi') }}">
               <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
+              <p>ABSEN</p>
             </a>
           </li>
           <li>
@@ -115,7 +115,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Icons</a>
+            <a class="navbar-brand" href="#pablo">Absensi</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -168,42 +168,61 @@
         </div>
       </nav>
       <!-- End Navbar -->
+
+      <style>
+        .card {
+          font-size: 1opx; /* Mengatur ukuran font dalam card */
+        }
+
+        .table {
+          font-size: 11px; /* Mengatur ukuran font dalam tabel */
+        }
+      </style>
+      
       <div class="panel-header panel-header-sm">
       </div>
-
+      <br> <br>
       <div class="container">
-        <button type="button" class="btn btn-outline-success">Tambah +</button>
-        <div class="row">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Id pegawai</th>
-                  <th scope="col">Tanggal</th>
-                  <th scope="col">Keterangan</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                @php
-                $no = 1;
-              @endphp
-                @foreach ($data as $absensi)
-                <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $absensi->pegawai_id }}</td>
-                  <td>{{ $absensi->tanggal }}</td>
-                  <td>{{ $absensi->keterangan }}</td>
-                  <td>
-                    <button type="button" class="btn btn-outline-success">Edit</button>
-                    <button type="button" class="btn btn-outline-danger">Hapus</button>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-        </div>
+  <div class="card">
+    <div class="card-header">
+    <h5 class="card-title">Daftar Absensi</h5>
+    <button class="btn btn-outline-warning" id="tambahButton">Absen</button>
+    <div class="card-body">
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Id pegawai</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Keterangan</th>
+              <th scope="col">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php
+            $no = 1;
+            @endphp
+            @foreach ($data as $absensi)
+            <tr>
+              <td>{{ $no++ }}</td>
+              <td>{{ $absensi->pegawai_id }}</td>
+              <td>{{ $absensi->tanggal }}</td>
+              <td>{{ $absensi->keterangan }}</td>
+              <td>
+                <button type="button" class="btn btn-outline-success">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Hapus</button>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       {{-- <div class="content">
         <div class="row">
