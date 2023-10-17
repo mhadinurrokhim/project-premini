@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensis', function (Blueprint $table) {
-            $table->bigInteger('pegawai_id');
-            $table->date('tanggal');
-            $table->string('keterangan');
+        Schema::create('jabatans', function (Blueprint $table) {
+            $table->id();
+            $table->date('nama_jabatan');
+            $table->time('deskripsi_jabatan');
+            $table->time('persyaratan_pekerjaan');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensis');
+        Schema::dropIfExists('jabatans');
     }
 };

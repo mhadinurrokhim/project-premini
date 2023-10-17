@@ -20,8 +20,7 @@ return new class extends Migration
             $table->decimal('gaji', 10, 2);
             $table->string('alamat');
             $table->string('no_tlp');
-            $table->text('informasi_pribadi')->nullable();
-            $table->text('informasi_pendidikan')->nullable();
+            $table->text('aksi');
             $table->timestamps();
         });
     }

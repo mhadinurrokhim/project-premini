@@ -55,13 +55,13 @@
           <li class="active ">
             <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
+              <p>PEGAWAI</p>
             </a>
           </li>
           <li>
             <a href="{{ route('Absensi') }}">
               <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
+              <p>ABSEN</p>
             </a>
           </li>
           <li>
@@ -94,6 +94,12 @@
               <p>Typography</p>
             </a>
           </li>
+          <li class="active-pro">
+            <a href="./upgrade.html">
+              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+              <p>Upgrade to PRO</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -109,7 +115,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo" style="color: rgb(255, 94, 0) ">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">PEGAWAI</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -162,8 +168,111 @@
         </div>
       </nav>
       <!-- End Navbar -->
+      <br><br><br><br>
+
+      <!-- start tabel-->
+      <style>
+  .card {
+    font-size: 1opx; /* Mengatur ukuran font dalam card */
+  }
+
+  .table {
+    font-size: 11px; /* Mengatur ukuran font dalam tabel */
+    color: #FFA500; /* Memberi warna font pada tabel (misalnya merah) */
+
+  }
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Data Pegawai</h5>
+            <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">ID Pegawai</th>
+                        <th scope="col">Jabatan</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">No Tlp</th>
+                        <th scope="col">Gaji</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Pegawai</h5>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" class="form-control" id="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_pegawai">ID Pegawai:</label>
+                        <input type="text" class="form-control" id="id_pegawai">
+                    </div>
+                    <div class="form-group">
+                        <label for="jabatan">Jabatan:</label>
+                        <input type="text" class="form-control" id="jabatan">
+                    </div>
+                    <div class="form-group">
+                        <label for="no_tlp">No Tlp:</label>
+                        <input type="number" class="form-control" id="no_tlp">
+                    </div>
+                    <div class="form-group">
+                        <label for="gaji">Gaji:</label>
+                        <input type="number" class="form-control" id="gaji">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat:</label>
+                        <textarea class="form-control" id="alamat" rows="4"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-outline-warning">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Handle button click to show modal
+        document.getElementById("tambahButton").addEventListener("click", function () {
+            $('#tambahModal').modal('show');
+        });
+    </script>
+</body>
+</html>
+
+
+      <!-- end tabel -->
+      
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
