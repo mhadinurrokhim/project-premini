@@ -53,7 +53,7 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="{{route('Dashboard'}}">
+            <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
@@ -65,7 +65,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('Gaji') }}">
+            <a href="{{ route('Gaji') }}"> 
               <i class="now-ui-icons location_map-big"></i>
               <p>Maps</p>
             </a>
@@ -76,14 +76,15 @@
               <p>Notifications</p>
             </a>
           </li>
+          </li>
           <li>
-            <a href="./user.html">
+            <a href="{{route('User')}}">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
           <li>
-            <a href="./tables.html">
+            <a href="{{route('Table')}}">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Table List</p>
             </a>
