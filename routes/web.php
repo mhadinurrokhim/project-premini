@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +18,27 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/Dashboard',[HomeController::class, 'Dashboard']);
-Route::get('/icon', [HomeController::class, 'icon']);
+// Route::get('/Dashboard',[HomeController::class, 'Dashboard']);
+// Route::get('/icon', [HomeController::class, 'icon']);
+
+Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
+Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
+// Route::get('/login',[HomeController::class,'Login']);
+
+Route::get('/',function(){
+    return view('login');
+});
+Route::get('/sesi', [SessionController::class, 'index']);
+Route::post('/sesi/login', [SessionController::class, 'Login']);
+Route::get('/sesi/logout', [SessionController::class, 'logout']);
+Route::get('/sesi/register', [SessionController::class, 'register']);
+Route::post('/sesi/create', [SessionController::class, 'create']);
+
+// Route::get('/Login', [AuthController::class, 'Login']);
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });

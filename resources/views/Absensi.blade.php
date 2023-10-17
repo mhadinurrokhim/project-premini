@@ -53,13 +53,13 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="./dashboard.html">
+            <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="active ">
-            <a href="./icons.html">
+            <a href="{{ route('Absensi') }}">
               <i class="now-ui-icons education_atom"></i>
               <p>Icons</p>
             </a>
@@ -170,7 +170,42 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-      <div class="content">
+
+      <div class="container">
+        <button type="button" class="btn btn-outline-success">Tambah +</button>
+        <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Id pegawai</th>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col">Keterangan</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @php
+                $no = 1;
+              @endphp
+                @foreach ($data as $absensi)
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $absensi->pegawai_id }}</td>
+                  <td>{{ $absensi->tanggal }}</td>
+                  <td>{{ $absensi->keterangan }}</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-success">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Hapus</button>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      {{-- <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -785,8 +820,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <footer class="footer">
+      </div> --}}
+      {{-- <footer class="footer">
         <div class=" container-fluid ">
           <nav>
             <ul>
@@ -815,7 +850,7 @@
         </div>
       </footer>
     </div>
-  </div>
+  </div> --}}
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

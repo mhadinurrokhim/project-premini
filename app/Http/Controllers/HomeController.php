@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function Dashboard()
+    public function Login()
     {
-        return view('Dashboard');
-    }
-    public function icon()
-    {
-        return view('icon');
+        return view('Login');
     }
 }

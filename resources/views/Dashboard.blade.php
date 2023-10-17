@@ -53,13 +53,13 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li class="active ">
-            <a href="./dashboard.html">
+            <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
           </li>
           <li>
-            <a href="./icons.html">
+            <a href="{{ route('Absensi') }}">
               <i class="now-ui-icons education_atom"></i>
               <p>Icons</p>
             </a>

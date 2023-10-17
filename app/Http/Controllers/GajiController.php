@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
-use Illuminate\Http\Request;
+use App\Models\gaji;
+use App\Http\Requests\StoregajiRequest;
+use App\Http\Requests\UpdategajiRequest;
 
-class PegawaiController extends Controller
+class GajiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Dashboard');
+        //
     }
 
     /**
@@ -26,7 +27,7 @@ class PegawaiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoregajiRequest $request)
     {
         //
     }
@@ -34,7 +35,7 @@ class PegawaiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pegawai $pegawai)
+    public function show(gaji $gaji)
     {
         //
     }
@@ -42,7 +43,7 @@ class PegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pegawai $pegawai)
+    public function edit(gaji $gaji)
     {
         //
     }
@@ -50,7 +51,7 @@ class PegawaiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(UpdategajiRequest $request, gaji $gaji)
     {
         //
     }
@@ -58,7 +59,7 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy(gaji $gaji)
     {
         //
     }
