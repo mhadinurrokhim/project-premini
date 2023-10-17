@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GajiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\PegawaiController;
@@ -27,8 +28,11 @@ use App\Http\Controllers\SessionController;
 
 Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
+Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
 // Route::get('/login',[HomeController::class,'Login']);
 
+
+Route::middleware([]);
 Route::get('/',function(){
     return view('login');
 });

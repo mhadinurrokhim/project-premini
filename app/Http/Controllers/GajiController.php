@@ -13,7 +13,7 @@ class GajiController extends Controller
      */
     public function index()
     {
-        //
+        return view('Gaji');
     }
 
     /**

@@ -54,20 +54,24 @@
         <ul class="nav">
           <li>
             <a href="{{ route('Dashboard') }}">
-              <i class="now-ui-icons design_app"></i>
+              <i class="now-ui-icons users_single-02"></i>
               <p>PEGAWAI</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
+            <ul class="nav">
+            <li class="active ">
             <a href="{{ route('Absensi') }}">
-              <i class="now-ui-icons education_atom"></i>
-              <p>ABSEN</p>
-            </a>
+                <i class="now-ui-icons education_atom"></i>
+                <p>Absensi</p>
+              </a>
+            </li>
+            </ul>
           </li>
           <li>
-            <a href="./map.html">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
+            <a href="{{ route('Gaji') }}">
+                <i class="now-ui-icons location_map-big"></i>
+                <p>Gaji</p>
             </a>
           </li>
           <li>
@@ -94,10 +98,10 @@
               <p>Typography</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
+          <li>
+            <a href="/sesi/logout">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
+              <p>Log out</p>
             </a>
           </li>
         </ul>
@@ -136,27 +140,6 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
@@ -178,7 +161,7 @@
           font-size: 11px; /* Mengatur ukuran font dalam tabel */
         }
       </style>
-      
+
       <div class="panel-header panel-header-sm">
       </div>
       <br> <br>

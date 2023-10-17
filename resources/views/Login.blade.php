@@ -34,19 +34,19 @@
                         <div class="form sign-up">
                             <div class="input-group">
                                 <i class='bx bxs-user'></i>
-                                <input type="text" placeholder="Username">
+                                <input type="text" placeholder="Username" name="name">
                             </div>
                             <div class="input-group">
                                 <i class='bx bx-mail-send'></i>
-                                <input type="email" placeholder="Email">
+                                <input type="email" placeholder="Email" name="email">
                             </div>
                             <div class="input-group">
                                 <i class='bx bxs-lock-alt'></i>
-                                <input type="password" placeholder="Password">
+                                <input type="password" placeholder="Password" name="password">
                             </div>
                             <div class="input-group">
                                 <i class='bx bxs-lock-alt'></i>
-                                <input type="password" placeholder="Confirm password">
+                                <input type="password" placeholder="Confirm password" name="confirm password">
                             </div>
                             <button>
                                 Sign up
@@ -73,7 +73,7 @@
                         <div class="form sign-in">
                             <div class="input-group">
                                 <i class='bx bxs-user'></i>
-                                <input type="text" placeholder="Username">
+                                <input type="email" placeholder="Email" name="email">
                             </div>
                             <div class="input-group">
                                 <i class='bx bxs-lock-alt'></i>
@@ -130,7 +130,6 @@
 					<h2>
 						Join with us
 					</h2>
-
 				</div>
 			</div>
 			<!-- END SIGN UP CONTENT -->
