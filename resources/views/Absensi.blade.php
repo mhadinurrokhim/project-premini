@@ -75,7 +75,7 @@
             </a>
           </li>
           <li>
-            <a href="./notifications.html">
+            <a href="{{route('Jabatan')}}">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Notifications</p>
             </a>

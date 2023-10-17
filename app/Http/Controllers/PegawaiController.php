@@ -28,7 +28,25 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nama'=>'required',
+            'foto'=>'required',
+            'id_pegawai'=>'required',
+            'jabatan'=>'required',
+            'gaji'=>'required',
+            'alamat'=>'required',
+            'no_tlp'=>'required'
+        ]);
+        Pegawai::create([
+            'nama'=>$request->nama,
+            'foto'=>$request->foto,
+            'id_pegawai'=>$request->id_pegawai,
+            'jabatan'=>$request->jabatan,
+            'gaji'=>$request->gaji,
+            'alamat'=>$request->alamat,
+            'no_tlp'=>$request->no_tlp
+        ]);
+        return redirect()->route('dashboard');
     }
 
     /**
