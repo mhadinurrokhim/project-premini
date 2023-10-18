@@ -93,7 +93,13 @@
             </a>
           </li>
           <li>
-            <a href="./typography.html">
+            <a href="{{ route('Typo') }}">
+              <i class="now-ui-icons text_caps-small"></i>
+              <p>Typography</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('Logout') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>

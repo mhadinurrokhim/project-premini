@@ -36,7 +36,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="user-profile">
+<body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="orange">
       <!--
@@ -76,19 +76,19 @@
               <p>Notifications</p>
             </a>
           </li>
-          <li class="active ">
-            <a href="{{route('User')}}">
+          <li>
+            <a href="{{ route('User') }}">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
           <li>
-            <a href="{{route('Table')}}">
+            <a href="{{ route('Table') }}">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Table List</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="{{ route('Typo') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
@@ -115,7 +115,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">User Profile</a>
+            <a class="navbar-brand" href="#pablo">Typography</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -172,119 +172,87 @@
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Edit Profile</h5>
+                <h5 class="title">Now Ui Table Heading</h5>
+                <p class="category">Created using Montserrat Font Family</p>
               </div>
               <div class="card-body">
-                <form>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Company (disabled)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                      </div>
-                    </div>
-                    <div class="col-md-3 px-1">
-                      <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="michael23">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Mike">
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="../assets/img/bg5.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="../assets/img/mike.jpg" alt="...">
-                    <h5 class="title">Mike Andrew</h5>
-                  </a>
-                  <p class="description">
-                    michael24
+                <div class="typography-line">
+                  <h1><span>Header 1</span>The Life of Now Ui Dashboard </h1>
+                </div>
+                <div class="typography-line">
+                  <h2><span>Header 2</span>The Life of Now Ui Dashboard </h2>
+                </div>
+                <div class="typography-line">
+                  <h3><span>Header 3</span>The Life of Now Ui Dashboard </h3>
+                </div>
+                <div class="typography-line">
+                  <h4><span>Header 4</span>The Life of Now Ui Dashboard </h4>
+                </div>
+                <div class="typography-line">
+                  <h5><span>Header 5</span>The Life of Now Ui Dashboard </h5>
+                </div>
+                <div class="typography-line">
+                  <h6><span>Header 6</span>The Life of Now Ui Dashboard </h6>
+                </div>
+                <div class="typography-line">
+                  <p><span>Paragraph</span>
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
                   </p>
                 </div>
-                <p class="description text-center">
-                  "Lamborghini Mercy <br>
-                  Your chick she so thirsty <br>
-                  I'm in that two seat Lambo"
-                </p>
-              </div>
-              <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
+                <div class="typography-line">
+                  <span>Quote</span>
+                  <blockquote>
+                    <p class="blockquote blockquote-primary">
+                      "I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
+                      <br>
+                      <br>
+                      <small>
+                        - Noaa
+                      </small>
+                    </p>
+                  </blockquote>
+                </div>
+                <div class="typography-line">
+                  <span>Muted Text</span>
+                  <p class="text-muted">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                  </p>
+                </div>
+                <div class="typography-line">
+                  <span>Primary Text</span>
+                  <p class="text-primary">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...</p>
+                </div>
+                <div class="typography-line">
+                  <span>Info Text</span>
+                  <p class="text-info">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div class="typography-line">
+                  <span>Success Text</span>
+                  <p class="text-success">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div class="typography-line">
+                  <span>Warning Text</span>
+                  <p class="text-warning">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                  </p>
+                </div>
+                <div class="typography-line">
+                  <span>Danger Text</span>
+                  <p class="text-danger">
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers... </p>
+                </div>
+                <div class="typography-line">
+                  <h2><span>Small Tag</span>
+                    Header with small subtitle <br>
+                    <small>Use "small" tag for the headers</small>
+                  </h2>
+                </div>
               </div>
             </div>
           </div>

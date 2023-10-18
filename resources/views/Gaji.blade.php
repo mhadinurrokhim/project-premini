@@ -93,15 +93,15 @@
             </a>
           </li>
           <li>
-            <a href="./typography.html">
+            <a href="{{ route('Typo') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
+          <li>
+            <a href="/sesi/logout">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
+              <p>Log out</p>
             </a>
           </li>
         </ul>

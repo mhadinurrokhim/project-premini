@@ -60,36 +60,36 @@
           </li>
           <li>
             <a href="{{ route('Absensi') }}">
-                <i class="now-ui-icons education_atom"></i>
-                <p>Absensi</p>
-              </a>
+              <i class="now-ui-icons location_map-big"></i>
+              <p>ABSEN</p>
+            </a>
           </li>
           <li>
             <a href="{{ route('Gaji') }}">
               <i class="now-ui-icons location_map-big"></i>
-              <p>Gaji</p>
+              <p>Maps</p>
             </a>
           </li>
           <li>
-            <a href="./notifications.html">
+            <a href="{{ route('Jabatan') }}">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Notifications</p>
             </a>
           </li>
           <li>
-            <a href="./user.html">
+            <a href="{{route('User')}}">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
           <li>
-            <a href="./tables.html">
+            <a href="{{ route('Table') }}">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Table List</p>
             </a>
           </li>
           <li>
-            <a href="./typography.html">
+            <a href="{{ route('Typo') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>
@@ -134,6 +134,12 @@
               </div>
             </form>
             <ul class="navbar-nav">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons users_single-02"></i>
@@ -187,6 +193,24 @@
                         <th scope="col">Gaji</th>
                         <th scope="col">Aksi</th>
                     </tr>
+
+                    @foreach ($dashboard as $no => $db )
+                    <tr>
+                        <!-- @dump($db) -->
+                        <td>{{ ++$no }}</td>
+                        <td>{{ $db->nama }}</td>
+                        <td></td>
+                        <td>{{ $db->id_pegawai }}</td>
+                        <td>{{ $db->jabatan }}</td>
+                        <td>{{ $db->alamat }}</td>
+                        <td>{{ $db->no_tlp }}</td>
+                        <td>{{ $db->gaji }}</td>
+                        <td>
+                        <button class="btn btn-outline-primary" id="tambahButton">Edit</button>
+                        <button class="btn btn-outline-danger" id="tambahButton">Hapus</button>
+                        </td>
+                    </tr>
+                        @endforeach
                 </thead>
             </table>
         </div>
@@ -203,52 +227,54 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{route('SimpanPegawai')}}" method="post" type="multipart/form-data" >
+                  @csrf
                 <div class="container">
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
                         <label for="nama">Nama:</label>
-                        <input type="text" class="form-control" id="nama">
+                        <input type="text" class="form-control" id="nama" name="nama">
                       </div>
                       <div class="form-group">
                         <label for="id_pegawai">ID Pegawai:</label>
-                        <input type="text" class="form-control" id="id_pegawai">
+                        <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
                         <label for="jabatan">Jabatan:</label>
-                        <input type="text" class="form-control" id="jabatan">
+                        <input type="text" class="form-control" id="jabatan" name="jabatan">
                       </div>
                       <div class="form-group">
                         <label for="no_tlp">No Tlp:</label>
-                        <input type="number" class="form-control" id="no_tlp">
+                        <input type="number" class="form-control" id="no_tlp" name="no_tlp">
                       </div>
                     </div>
                   </div>
                 </div>
                     <div class="form-group">
                         <label for="gaji">Gaji:</label>
-                        <input type="number" class="form-control" id="gaji">
+                        <input type="number" class="form-control" id="gaji" name="gaji">
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
-                        <textarea class="form-control" id="alamat" rows="4"></textarea>
+                        <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
                     </div>
-                    <div class="">
+                    <!-- <div class="">
                       <label class="form-label" for="foto">Foto:</label>
                       <input type="file" class="form-control" id="foto">
-                    </div>
-                </form>
+                    </div> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                  </div>
+                </div>
+              </div>
+              </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-outline-warning">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
