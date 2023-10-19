@@ -61,3 +61,6 @@ Route::post('/sesi/create', [SessionController::class, 'create']);
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+//delete
+Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
