@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\TypoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TypograhpyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +39,8 @@ Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
 Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
 Route::get('/Table', [TableController::class, 'index'])->name('Table');
 Route::get('/User', [UserController::class, 'index'])->name('User');
-Route::get('/Typography', [TypoController::class, 'index'])->name('Typography');
+Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');
+
 
 // Route::get('/login',[HomeController::class,'Login']);
 

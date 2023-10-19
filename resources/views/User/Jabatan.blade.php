@@ -53,7 +53,7 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="{{ route('Pegawai') }}">
+            <a href="{{ route('Dashboard') }}">
               <i class="now-ui-icons design_app"></i>
               <p>PEGAWAI</p>
             </a>
