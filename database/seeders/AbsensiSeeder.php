@@ -16,17 +16,7 @@ class AbsensiSeeder extends Seeder
     public function run(): void
     {
         DB::table('absensis')->insert([
-            'pegawai_id'=> '12',
-            'tanggal'=> '2023-10-17',
-            'keterangan'=> 'Masuk'
-        ]);
-        DB::table('absensis')->insert([
-            'pegawai_id'=> '100',
-            'tanggal'=> '2023-10-17',
-            'keterangan'=> 'Masuk'
-        ]);
-        DB::table('absensis')->insert([
-            'pegawai_id'=> '13',
+            'id_pegawai'=> '12',
             'tanggal'=> '2023-10-17',
             'keterangan'=> 'Masuk'
         ]);

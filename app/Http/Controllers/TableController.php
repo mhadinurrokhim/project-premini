@@ -12,7 +12,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        return view('Table');
+        return view('User.Table');
     }
 
     /**

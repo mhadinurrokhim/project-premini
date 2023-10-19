@@ -13,7 +13,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $dashboard=pegawai::all();
-        return view('Dashboard',compact('dashboard'));
+        return view('User.Dashboard',compact('dashboard'));
     }
 
     /**

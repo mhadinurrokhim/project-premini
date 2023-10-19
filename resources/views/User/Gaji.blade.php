@@ -53,15 +53,15 @@
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li>
-            <a href="{{ route('Dashboard') }}">
+            <a href="{{ route('Pegawai') }}">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Dashboard</p>
+              <p>PEGAWAI</p>
             </a>
           </li>
           <li>
             <a href="{{ route('Absensi') }}">
               <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
+              <p>ABSENSI</p>
             </a>
           </li>
           <li>
@@ -69,7 +69,7 @@
             <li class="active ">
             <a href="{{ route('Gaji') }}">
                 <i class="now-ui-icons location_map-big"></i>
-                <p>Gaji</p>
+                <p>GAJI</p>
             </a>
             </li>
             </ul>
@@ -77,7 +77,7 @@
           <li>
             <a href="{{route('Jabatan')}}">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p>JABATAN</p>
             </a>
           </li>
           <li>
@@ -93,7 +93,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('Typo') }}">
+            <a href="{{ route('Typography') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>

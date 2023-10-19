@@ -71,13 +71,13 @@
           <li>
             <a href="{{ route('Gaji') }}">
                 <i class="now-ui-icons location_map-big"></i>
-                <p>Gaji</p>
+                <p>GAJI</p>
             </a>
           </li>
           <li>
             <a href="{{route('Jabatan')}}">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p>JABATAN</p>
             </a>
           </li>
           <li>
@@ -93,13 +93,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('Typo') }}">
-              <i class="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('Logout') }}">
+            <a href="{{ route('Typography') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Typography</p>
             </a>
@@ -171,46 +165,82 @@
       <div class="panel-header panel-header-sm">
       </div>
       <br> <br>
-      <div class="container">
-  <div class="card">
-    <div class="card-header">
-    <h5 class="card-title">Daftar Absensi</h5>
-    <button class="btn btn-outline-warning" id="tambahButton">Absen</button>
-    <div class="card-body">
-      <div class="row">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">No</th>
-              <th scope="col">Id pegawai</th>
-              <th scope="col">Tanggal</th>
-              <th scope="col">Keterangan</th>
-              <th scope="col">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @php
-            $no = 1;
-            @endphp
-            @foreach ($data as $absensi)
-            <tr>
-              <td>{{ $no++ }}</td>
-              <td>{{ $absensi->pegawai_id }}</td>
-              <td>{{ $absensi->tanggal }}</td>
-              <td>{{ $absensi->keterangan }}</td>
-              <td>
-                <button type="button" class="btn btn-outline-success">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Hapus</button>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-      </div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Data Abensis</h5>
+            <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Id pegawai</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Keterangan</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $no = 1;
+                    @endphp
+                     @foreach ($data as $absensi)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $absensi->id_pegawai }}</td>
+                        <td>{{ $absensi->tanggal }}</td>
+                        <td>{{ $absensi->keterangan }}</td>
+                        <td>
+                        <button type="button" class="btn btn-outline-success" id="editModal">Edit</button>
+                        <button type="button" class="btn btn-outline-danger">Hapus</button>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+            </table>
+        </div>
     </div>
   </div>
+  <!-- Modal -->
+<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahModalLabel">Tambah Data Absensi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id_pegawai">ID Pegawai:</label>
+                        <input type="text" class="form-control" id="id_pegawai">
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal:</label>
+                        <input type="date" class="form-control" id="tanggal">
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan:</label>
+                        <input type="text" class="form-control" id="keterangan">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-outline-warning">Simpan</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    // Handle button click to show modal
+    document.getElementById("tambahButton").addEventListener("click", function () {
+        $('#tambahModal').modal('show');
+    });
+</script>
 
 
       {{-- <div class="content">
