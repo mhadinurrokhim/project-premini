@@ -76,24 +76,39 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        // return view('User.Dashboard', compact('dashboard'));
+        return view('Dashboard', compact('dashboard'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request,  $id)
     {
-        // $validatedData = $request->validated();
+
+        // dd($request);
+        $pegawai = Pegawai::find($id);
         $pegawai->update([
-            'nama' =>$request->nama,
-            'foto' =>$request->foto,
-            'id_pegawai' =>$request->id_pegawai,
-            'jabatan' =>$request->jabatan,
-            'jagi' =>$request->gaji,
-            'alamat' =>$request->alamat,
-            'no_tlp' =>$request->no_tlp,
+            'nama' => $request->input('nama'),
+            'foto' => $request->input('foto'),
+            'id_pegawai' => $request->input('id_pegawai'),
+            'jabatan' => $request->input('jabatan'),
+            'gaji' => $request->input('gaji'),
+            'alamat' => $request->input('alamat'),
+            'no_tlp' => $request->input('no_tlp'),
         ]);
+
+        // $pegawai = Pegawai::findOrFail($id);
+        // $pegawai->nama = $request->nama;
+        // $pegawai->foto = $request->file('foto')->store('foto', 'public');
+        // $pegawai->id_pegawai=$request->id_pegawai;
+        // $pegawai->jabatan=$request->jabatan;
+        // $pegawai->gaji=$request->gaji;
+        // $pegawai->alamat=$request->alamat;
+        // $pegawai->no_tlp=$request->no_tlp;
+        // $pegawai->save();
+
+        // // dd($request);
+        // return redirect()->back();
 
         return redirect()->route('Dashboard')->with('success', 'Pegawai update successfully.');
     }

@@ -32,11 +32,17 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Route::get('/icon', [HomeController::class, 'icon']);
 
 Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
-Route::post('/create', [PegawaiController::class, 'store'])->name('SimpanPegawai');
-Route::put('/update', [PegawaiController::class, 'update'])->name('update');
+Route::post('/SimpanPegawai', [PegawaiController::class, 'store'])->name('SimpanPegawai');
+Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
+Route::put('/update/{id}', [PegawaiController::class, 'update'])->name('update');
 
 
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
+Route::post('/create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
+Route::post('/update', [AbsensiController::class, 'update'])->name('updateAbsensi');
+Route::delete('/data/{id}', [AbsensiController::class, 'destroy']);
+
+
 Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
 Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
 Route::get('/Table', [TableController::class, 'index'])->name('Table');
@@ -84,6 +90,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 // });
 
 //delete
-Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
 
 // Route::put('/dashboard/{id}', [PegawaiController::class, 'edit'])->name('edit');
+

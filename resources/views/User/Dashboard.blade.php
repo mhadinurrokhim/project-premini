@@ -252,7 +252,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action=/update method="POST">
+                                <form action="/update/{{$item->id}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div>
@@ -261,24 +261,24 @@
                                               <div class="col-6">
                                                   <div class="form-group">
                                                       <label for="nama">Nama:</label>
-                                                      <input type="text" class="form-control" id="nama"
+                                                      <input type="text" value="{{ $item->nama }}" class="form-control" id="nama"
                                                           name="nama">
                                                   </div>
                                                   <div class="form-group">
                                                       <label for="id_pegawai">ID Pegawai:</label>
-                                                      <input type="number" class="form-control" id="id_pegawai"
+                                                      <input type="number" value="{{ $item->id_pegawai }}" class="form-control" id="id_pegawai"
                                                           name="id_pegawai">
                                                   </div>
                                               </div>
                                               <div class="col-6">
                                                   <div class="form-group">
                                                       <label for="jabatan">Jabatan:</label>
-                                                      <input type="text" class="form-control" id="jabatan"
+                                                      <input type="text" value="{{ $item->jabatan }}" class="form-control" id="jabatan"
                                                           name="jabatan">
                                                   </div>
                                                   <div class="form-group">
                                                       <label for="no_tlp">No Tlp:</label>
-                                                      <input type="number" class="form-control" id="no_tlp"
+                                                      <input type="number" value="{{ $item->no_tlp }}" class="form-control" id="no_tlp"
                                                           name="no_tlp">
                                                   </div>
                                               </div>
@@ -286,11 +286,11 @@
                                       </div>
                                       <div class="form-group">
                                           <label for="gaji">Gaji:</label>
-                                          <input type="number" class="form-control" id="gaji" name="gaji">
+                                          <input type="number" value="{{ $item->gaji }}" class="form-control" id="gaji" name="gaji">
                                       </div>
                                       <div class="form-group">
                                           <label for="alamat">Alamat:</label>
-                                          <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
+                                          <textarea class="form-control" id="alamat" rows="4" name="alamat">{{ $item->alamat }}</textarea>
                                       </div>
                                       <div class="">
                                           <label class="form-label" for="foto">Fotos:</label>
@@ -301,8 +301,8 @@
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-outline-warning">Simpan</button>
                                   </div>
                                 </form>
                           </div>

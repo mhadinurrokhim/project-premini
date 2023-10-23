@@ -94,7 +94,7 @@
 
     <form action="/proseslogin" method="POST">
         @csrf
-        <h1>Selamat Datang</h1>
+        <h1>SELAMAT DATANG</h1>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label{{ $errors->has('email') ? ' text-danger' : '' }}">Email Address</label>
             <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">

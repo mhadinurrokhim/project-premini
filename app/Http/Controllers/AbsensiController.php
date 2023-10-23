@@ -45,13 +45,24 @@ class AbsensiController extends Controller
         //     'keterangan.required'=> 'keterangan tidak boleh kosong'
         // ]);
 
+        $this->validate($request,[
+            'pegawai_id'=>'required',
+            'tanggal'=>'required',
+            'keterangan'=>'required'
+        ],[
+            'pegawai_id.required'=>'pegawai_id tidak boleh kosong',
+            'tanggal.required'=>'id tanggal tidak boleh kosong',
+            'keterangan.required'=> 'keterngan tidak boleh kosong'
+        ]);
+// dd($request->all());
         $absensi = new Absensi;
         $absensi->pegawai_id = $request->pegawai_id;
-        $absensi->tanggal = $request->tanggal;
-        $absensi->keterangan = $request->keterangan;
+        $absensi->tanggal=$request->tanggal;
+        $absensi->keterangan=$request->keterangan;
         $absensi->save();
 
-        return redirect()->route('Absensi');
+        // dd($request);
+        return redirect()->back();
     }
 
     /**
@@ -75,7 +86,10 @@ class AbsensiController extends Controller
      */
     public function update(UpdateAbsensiRequest $request, Absensi $absensi)
     {
-        //
+        $validatedData = $request->validated();
+        $absensi->update($validatedData);
+
+        return redirect()->route('data')->with('success', 'Absensi update successfully.');
     }
 
     /**
@@ -83,6 +97,9 @@ class AbsensiController extends Controller
      */
     public function destroy(Absensi $absensi)
     {
-        //
+        $absensi = Absensi::find($absensi);
+        $absensi->delete();
+
+        return redirect()->route('data')->with('success', 'Pegawai deleted successfully');
     }
 }
