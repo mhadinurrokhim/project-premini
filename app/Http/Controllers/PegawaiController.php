@@ -36,6 +36,7 @@ class PegawaiController extends Controller
             'jabatan'=>'required',
             'gaji'=>'required',
             'alamat'=>'required',
+            'foto'=>'required',
             'no_tlp'=>'required'
         ],[
             'nama.required'=>'nama tidak boleh kosong',
@@ -45,10 +46,10 @@ class PegawaiController extends Controller
             'alamat.required'=> 'alamat tidak boleh kosong',
             'no_tlp.required'=> 'no tlp tidak boleh kosong'
         ]);
-
+// dd($request->all());
         $pegawai = new Pegawai;
         $pegawai->nama = $request->nama;
-        $pegawai->foto = $request->foto;
+        $pegawai->foto = $request->file('foto')->store('foto', 'public');
         $pegawai->id_pegawai=$request->id_pegawai;
         $pegawai->jabatan=$request->jabatan;
         $pegawai->gaji=$request->gaji;

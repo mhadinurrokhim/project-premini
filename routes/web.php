@@ -32,6 +32,7 @@ use App\Http\Controllers\TypograhpyController;
 
 Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
 Route::post('/create', [PegawaiController::class, 'store'])->name('SimpanPegawai');
+Route::post('/update', [PegawaiController::class, 'update'])->name('updatePegawai');
 
 
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
@@ -64,3 +65,5 @@ Route::get('/login', function () {
 
 //delete
 Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
+
+Route::put('/dashboard/{id}', [PegawaiController::class, 'edit'])->name('edit');
