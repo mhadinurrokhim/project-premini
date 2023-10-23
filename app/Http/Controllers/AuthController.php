@@ -44,8 +44,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
 
         ];
-        // event(new Registered($data));
-        // Auth::login($data);
+        // event(new Registered($user));
+        // Auth::login($user);
 
         User::create($data);
         return redirect('/login')->with('success', 'Berhasil register');

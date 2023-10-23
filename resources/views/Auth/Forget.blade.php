@@ -92,11 +92,15 @@
     </style>
     <img src="{{ asset('asset/loginregister.jpg') }}" alt="">
 
-    <form>
+    <form action="{{ route('password.email') }}" method="POST">
+        @csrf
         <h1>Kirim Email</h1>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            @if ($errors->has('email'))
+            <div class="invalid-feedback" id="validasi">{{ $errors->first('email') }}</div>
+            @endif
           </div>
           <a href="/change" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</a>
         </div>

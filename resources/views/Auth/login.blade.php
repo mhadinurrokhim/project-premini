@@ -116,7 +116,7 @@
                 <p class="fs-4 mb-0 fw-bold">Belum Punya Akun?</p>
                 <a class="text-primary fw-bold ms-2" href="/register">Daftar</a>
             </div>
-            <a class="text-primary fw-bold" href="/Forget">Lupa Password ?</a>
+            <a href="/Forget" class="text-primary fw-bold" href="/Forget">Lupa Password ?</a>
         </div>
       </form>
       <style>

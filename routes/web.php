@@ -1,11 +1,16 @@
 <?php
 
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\TableController;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
@@ -91,5 +96,47 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 //delete
 
-// Route::put('/dashboard/{id}', [PegawaiController::class, 'edit'])->name('edit');
 
+
+
+
+Route::get('/Forget', function () {
+    return view('Auth.login',);
+})->middleware('guest')->name('password.request');
+
+Route::post('/Forget', function (Request $request) {
+    $request->validate(['email' => 'required|email|exists:users,email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+
+    return view('auth.change', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+
+            $user->save();
+
+            event(new PasswordReset($user));
+        }
+    );
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('Guest.index')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');

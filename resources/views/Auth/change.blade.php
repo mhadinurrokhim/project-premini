@@ -92,8 +92,11 @@
     </style>
     <img src="{{ asset('asset/loginregister.jpg') }}" alt="">
 
-    <form>
+    <form action="password.update" method="POST">
+        @csrf
         <h1>Buat Password baru</h1>
+        <input type="hidden" name="token" value="{{ request()->token }}">
+        <input type="hidden" name="email" value="{{ request()->email }}">
         <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1">
