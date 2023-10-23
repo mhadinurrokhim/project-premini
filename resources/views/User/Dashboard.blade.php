@@ -232,7 +232,6 @@
                                                         Hapus
                                                     </button>
                                                 </form>
-                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -253,55 +252,59 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="nama">Nama:</label>
-                                                <input type="text" class="form-control" id="nama"
-                                                    name="nama">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="id_pegawai">ID Pegawai:</label>
-                                                <input type="number" class="form-control" id="id_pegawai"
-                                                    name="id_pegawai">
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="jabatan">Jabatan:</label>
-                                                <input type="text" class="form-control" id="jabatan"
-                                                    name="jabatan">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="no_tlp">No Tlp:</label>
-                                                <input type="number" class="form-control" id="no_tlp"
-                                                    name="no_tlp">
-                                            </div>
-                                        </div>
+                                <form action=/update method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div>
+                                      <div class="container">
+                                          <div class="row">
+                                              <div class="col-6">
+                                                  <div class="form-group">
+                                                      <label for="nama">Nama:</label>
+                                                      <input type="text" class="form-control" id="nama"
+                                                          name="nama">
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="id_pegawai">ID Pegawai:</label>
+                                                      <input type="number" class="form-control" id="id_pegawai"
+                                                          name="id_pegawai">
+                                                  </div>
+                                              </div>
+                                              <div class="col-6">
+                                                  <div class="form-group">
+                                                      <label for="jabatan">Jabatan:</label>
+                                                      <input type="text" class="form-control" id="jabatan"
+                                                          name="jabatan">
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="no_tlp">No Tlp:</label>
+                                                      <input type="number" class="form-control" id="no_tlp"
+                                                          name="no_tlp">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="gaji">Gaji:</label>
+                                          <input type="number" class="form-control" id="gaji" name="gaji">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="alamat">Alamat:</label>
+                                          <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
+                                      </div>
+                                      <div class="">
+                                          <label class="form-label" for="foto">Fotos:</label>
+                                          <input type="file" name="foto"
+                                              class="form-control @error('foto') is-invalid @enderror"
+                                              id="previewImage">
+                                      </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gaji">Gaji:</label>
-                                    <input type="number" class="form-control" id="gaji" name="gaji">
-                                </div>
-                                <div class="form-group">
-                                    <label for="alamat">Alamat:</label>
-                                    <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
-                                </div>
-                                <div class="">
-                                    <label class="form-label" for="foto">Fotos:</label>
-                                    <input type="file" name="foto"
-                                        class="form-control @error('foto') is-invalid @enderror"
-                                        id="previewImage">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                              <button type="button" class="btn btn-primary">Simpan</button>
-                            </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                  </div>
+                                </form>
                           </div>
                         </div>
                       </div>

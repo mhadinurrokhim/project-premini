@@ -68,7 +68,7 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('Dashboard', compact('dashboard'));
+        return view('User.Dashboard', compact('dashboard'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-
+        // return view('User.Dashboard', compact('dashboard'));
     }
 
     /**
@@ -84,8 +84,16 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
-        $validatedData = $request->validated();
-        $pegawai->update($validatedData);
+        // $validatedData = $request->validated();
+        $pegawai->update([
+            'nama' =>$request->nama,
+            'foto' =>$request->foto,
+            'id_pegawai' =>$request->id_pegawai,
+            'jabatan' =>$request->jabatan,
+            'jagi' =>$request->gaji,
+            'alamat' =>$request->alamat,
+            'no_tlp' =>$request->no_tlp,
+        ]);
 
         return redirect()->route('Dashboard')->with('success', 'Pegawai update successfully.');
     }

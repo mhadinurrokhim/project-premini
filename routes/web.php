@@ -33,7 +33,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
 Route::post('/create', [PegawaiController::class, 'store'])->name('SimpanPegawai');
-Route::post('/update', [PegawaiController::class, 'update'])->name('updatePegawai');
+Route::put('/update', [PegawaiController::class, 'update'])->name('update');
 
 
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
@@ -86,4 +86,4 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 //delete
 Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
 
-Route::put('/dashboard/{id}', [PegawaiController::class, 'edit'])->name('edit');
+// Route::put('/dashboard/{id}', [PegawaiController::class, 'edit'])->name('edit');
