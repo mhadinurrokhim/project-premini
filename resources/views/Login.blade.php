@@ -25,7 +25,7 @@
 <body>
     <div id="container" class="container">
 		<!-- FORM SECTION -->
-        <form action="/sesi/create" method="POST">
+        <form action="" method="POST">
             @csrf
             <div class="row">
                 <!-- SIGN UP -->
@@ -67,7 +67,7 @@
 			<!-- END SIGN UP -->
 			<!-- SIGN IN -->
             <div class="col align-items-center flex-col sign-in">
-                    <form action="/sesi/login" method="POST">
+                    <form action="" method="POST">
                         @csrf
                     <div class="form-wrapper align-items-center">
                         <div class="form sign-in">

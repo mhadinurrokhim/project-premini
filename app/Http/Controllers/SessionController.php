@@ -30,8 +30,12 @@ class SessionController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return redirect('Pegawai')->with('success','Berhasil login');
+            // kalau otentifikasi sukses
+            // return 'sukses';
+            return redirect('Siswa')->with('success','Berhasil login');
         }else {
+            // kalau otentifikasi gagal
+            // return 'gagal';
             return redirect('sesi')->with('error','username dan password tidak valid');
         }
     }
@@ -41,8 +45,8 @@ class SessionController extends Controller
         return redirect('sesi')->with('success','berhasil logout');
     }
 
-    function register(Request $request){
-        return view('Login');
+    function register(){
+        return view('login');
     }
 
     function create(Request $request){
@@ -78,7 +82,7 @@ class SessionController extends Controller
 
             // kalau otentifikasi sukses
             // return 'sukses';
-            return redirect('Pegawai')->with('
+            return redirect('Siswa')->with('
             success', Auth::user()->name . 'Berhasil login');
         }else {
             // kalau otentifikasi gagal

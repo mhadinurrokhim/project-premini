@@ -11,6 +11,7 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TypograhpyController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,22 +47,41 @@ Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typograp
 // Route::get('/login',[HomeController::class,'Login']);
 
 
-Route::middleware([]);
-Route::get('/',function(){
-    return view('login');
-});
-Route::get('/sesi', [SessionController::class, 'index']);
-Route::post('/sesi/login', [SessionController::class, 'Login']);
-Route::get('/sesi/logout', [SessionController::class, 'logout']);
-Route::get('/sesi/register', [SessionController::class, 'register'])->name('register');
-Route::post('/sesi/create', [SessionController::class, 'create']);
+// Route::middleware([]);
+// Route::get('/',function(){
+//     return view('login');
+// });
+// Route::get('/sesi', [SessionController::class, 'index']);
+// Route::post('/sesi/login', [SessionController::class, 'Login']);
+// Route::get('/sesi/logout', [SessionController::class, 'logout']);
+// Route::get('/sesi/register', [SessionController::class, 'register'])->name('register');
+// Route::post('/sesi/create', [SessionController::class, 'create']);
+
+
+Route::get('/', [AuthController::class, 'index']);
+Route::get('/login',[AuthController::class, 'index'])->name('login');
+Route::post('/proseslogin',[AuthController::class, 'proseslogin'])->name('proseslogin');
+Route::get('/register',[AuthController::class, 'register'])->name('register');
+Route::post('/Createregister',[AuthController::class, 'Createregister'])->name('Createregister');
+Route::get('Forget',[AuthController::class, 'Forget']);
+Route::get('change',[AuthController::class, 'change']);
+Route::get('logout',[AuthController::class, 'logout']);
+Route::get('/email/verify', function () {
+    return view('Auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/login');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 
 
 // Route::get('/Login', [AuthController::class, 'Login']);
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 
 //delete
 Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);

@@ -99,7 +99,7 @@
             </a>
           </li>
           <li>
-            <a href="/sesi/logout">
+            <a href="/logout">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
               <p>Log out</p>
             </a>

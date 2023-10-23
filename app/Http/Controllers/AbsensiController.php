@@ -27,7 +27,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        return view('User.Absensi');
+        // return view('User.Absensi');
     }
 
     /**
@@ -35,15 +35,23 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-        $validator =validator($request->all(),[
-            'pegawai_id',
-            'tanggal',
-            'keterangan'
-        ],[
-            'pegawai_id.required'=>'id pegawai tidak boleh kosong',
-            'tanggal.required'=>'tanggal tidak boleh kosong',
-            'keterangan.required'=> 'keterangan tidak boleh kosong'
-        ]);
+        // $validator =validator($request->all(),[
+        //     'pegawai_id',
+        //     'tanggal',
+        //     'keterangan'
+        // ],[
+        //     'pegawai_id.required'=>'id pegawai tidak boleh kosong',
+        //     'tanggal.required'=>'tanggal tidak boleh kosong',
+        //     'keterangan.required'=> 'keterangan tidak boleh kosong'
+        // ]);
+
+        $absensi = new Absensi;
+        $absensi->pegawai_id = $request->pegawai_id;
+        $absensi->tanggal = $request->tanggal;
+        $absensi->keterangan = $request->keterangan;
+        $absensi->save();
+
+        return redirect()->route('Absensi');
     }
 
     /**

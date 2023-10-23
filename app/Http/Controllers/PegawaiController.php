@@ -13,7 +13,9 @@ class PegawaiController extends Controller
     public function index()
     {
         $dashboard=pegawai::all();
+        // dd(auth()->user());
         return view('User.Dashboard',compact('dashboard'));
+
     }
 
     /**
@@ -74,7 +76,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        //
+
     }
 
     /**
