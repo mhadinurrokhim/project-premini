@@ -47,6 +47,11 @@ Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
 
 
 Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
+Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
+Route::put('/update/{id}', [GajiController::class, 'update'])->name('updateGaji');
+Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
+
+
 Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
 Route::get('/Table', [TableController::class, 'index'])->name('Table');
 Route::get('/User', [UserController::class, 'index'])->name('User');

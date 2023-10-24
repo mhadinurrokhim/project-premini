@@ -13,8 +13,8 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $data= Gaji::all();
-        return view('User.Gaji', compact('data'));
+        $gaji= Gaji::all();
+        return view('User.Gaji', compact('gaji'));
     }
 
     /**
@@ -22,7 +22,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        //
+        return view('User.Gaji');
     }
 
     /**
@@ -30,7 +30,24 @@ class GajiController extends Controller
      */
     public function store(StoregajiRequest $request)
     {
-        //
+        $this->validate($request,[
+            'id_pegawai'=>'required',
+            'jumlah'=>'required',
+            'tanggal_pembayaran'=>'required'
+        ],[
+            'id_pegawai.required'=>'id pegawai tidak boleh kosong',
+            'jumlah.required'=>'jumlah tidak boleh kosong',
+            'tanggal_pembayaran.required'=> 'tanggal pembayaran tidak boleh kosong'
+        ]);
+
+
+        $gaji = new gaji;
+        $gaji->id_pegawai = $request->id_pegawai;
+        $gaji->jumlah=$request->jumlah;
+        $gaji->tanggal_pembayaran=$request->tanggal_pembayaran;
+        $gaji->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -38,7 +55,7 @@ class GajiController extends Controller
      */
     public function show(gaji $gaji)
     {
-        //
+        return view('User.Gaji', compact('gaji'));
     }
 
     /**
@@ -46,22 +63,31 @@ class GajiController extends Controller
      */
     public function edit(gaji $gaji)
     {
-        //
+        return view('gaji', compact('gaji'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdategajiRequest $request, gaji $gaji)
+    public function update(UpdategajiRequest $request, gaji $gaji, $id )
     {
-        //
+        $gaji = gaji::find($id);
+        $gaji->update([
+            'id_pegawai' => $request->input('id_pegawai'),
+            'jumlah' => $request -> input('jumlah'),
+            'tanggal_pembayaran' => $request->input('tanggal_pembayaran')
+        ]);
+
+        return back()->with('success', 'Gaji update successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(gaji $gaji)
+    public function destroy(gaji $gaji ,$id)
     {
-        //
+        $gaji = gaji::find($id);
+        $gaji->delete();
+        return back()->with('Auccess', 'Gaji deleted successfully');
     }
 }

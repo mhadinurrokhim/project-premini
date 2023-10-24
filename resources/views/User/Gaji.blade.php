@@ -192,31 +192,31 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">ID Pegawai</th>
-                                        <th scope="col">jumlah</th>
-                                        <th scope="col">tanggal pembayaran</th>
-                                        <th scope="col">aksi</th>
+                                        <th scope="col">Jumlah</th>
+                                        <th scope="col">Tanggal Gajian</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
-                                    @php
-                                    $no = 1;
-                                    @endphp
-                                    @foreach($data as $gaji)
+
+                                    @foreach($gaji as $iteration => $gj)
                                     <tr>
-                                        <td>{{ ++$no }}</td>
-                                        <td>{{ $gaji->id_pegawai }}</td>
-                                        <td>{{ $gaji->jumlah }}</td>
-                                        <td>{{ $gaji->tanggal_pembayaran }}</td>
-                                        <td style="display: flex; align-items: center;">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">
+                                        <td>{{ $iteration + 1 }}</td>
+                                        <td>{{ $gj->id_pegawai }}</td>
+                                        <td>{{ $gj->jumlah }}</td>
+                                        <td>{{ $gj->tanggal_pembayaran }}</td>
+                                        <td class="d-flex">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $gj->id }}" style="margin-right: 10px;">
                                                 Edit
                                             </button>
-                                            <form>
-                                                <button type="submit" class="btn btn-danger" id="tambahButton">
+                                            <form action="/deletegaji/{{ $gj->id }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger" id="tambahButton" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
                                                     Hapus
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                @endforeach
                                 </thead>
                             </table>
                         </div>
@@ -225,68 +225,46 @@
 
 
                     <!-- Modal Edit -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @foreach ($gaji as $ga)
+                    <div class="modal fade" id="exampleModal{{$ga->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
                             <div class="modal-body">
-                                <form>
-                                    <div>
-                                      <div class="container">
-                                          <div class="row">
-                                              <div class="col-6">
-                                                  <div class="form-group">
-                                                      <label for="nama">Nama:</label>
-                                                      <input type="text" value="" class="form-control" id="nama"
-                                                          name="nama">
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label for="id_pegawai">ID Pegawai:</label>
-                                                      <input type="number" value="" class="form-control" id="id_pegawai"
-                                                          name="id_pegawai">
-                                                  </div>
-                                              </div>
-                                              <div class="col-6">
-                                                  <div class="form-group">
-                                                      <label for="jabatan">Jabatan:</label>
-                                                      <input type="text" value="" class="form-control" id="jabatan"
-                                                          name="jabatan">
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label for="no_tlp">No Tlp:</label>
-                                                      <input type="number" value="" class="form-control" id="no_tlp"
-                                                          name="no_tlp">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="gaji">Gaji:</label>
-                                          <input type="number" value="" class="form-control" id="gaji" name="gaji">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="alamat">Alamat:</label>
-                                          <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
-                                      </div>
-                                      <div class="">
-                                          <label class="form-label" for="foto">Fotos:</label>
-                                          <input type="file" name="foto"
-                                              class="form-control @error('foto') is-invalid @enderror"
-                                              id="previewImage">
-                                      </div>
+                                <form method="POST" action="update/{{$ga->id}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="coll-6">
+                                                <div class="form-group">
+                                                    <label for="id_pegawai">ID Pegawai:</label>
+                                                    <input type="number" value="{{ $ga->id_pegawai }}" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="jumlah">Jumlah:</label>
+                                                    <input type="number" value="{{ $ga->jumlah }}" class="form-control" id="jumlah" name="jumlah">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tanggal_pembayarn">Tanggal Bayaran:</label>
+                                            <input type="date" value="{{ $ga->tanggal_pembayaran }}" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran">
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                                  </div>
-                                </form>
-                          </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                      </div>
+                    </div>
+                </div>
+                @endforeach
 
                 <!-- Modal Tambah-->
                 <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -296,25 +274,35 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form>
+                            <form action="{{ route('SimpanGaji') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
                                     <div class="container">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="id_pegawai">ID Pegawai:</label>
-                                                <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="id_pegawai">ID Pegawai:</label>
+                                                    <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                </div>
                                             </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="jumlah">Jumlah:</label>
+                                                    <input type="number" class="form-control" id="jumlah" name="jumlah">
+                                                </div>
+                                            </div>
+                                        </div>
                                             <div class="form-group">
-                                                <label for="jumlah">Jumlah:</label>
-                                                <input type="number" class="form-control" id="jumlah" name="jumlah">
+                                                <label for="tanggal_pembayaran">Tanggal Gajian:</label>
+                                                <input type="date" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
                             </div>
                         </div>
                     </div>
