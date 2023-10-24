@@ -299,22 +299,14 @@
                             <div class="modal-body">
                                 <form>
                                     <div class="container">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="id_pegawai">ID Pegawai:</label>
-                                                    <input type="number" class="form-control form-control-lg" id="id_pegawai" name="id_pegawai">
-                                                </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="id_pegawai">ID Pegawai:</label>
+                                                <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="jabatan">Jumlah:</label>
-                                                    <input type="number" class="form-control form-control-lg" id="jumlah" name="jabatan">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tanggal_pembayaran">Tanggal pembayaran:</label>
-                                                    <input type="date" class="form-control form-control-lg" id="tanggal_pembayaran" name="tanggal_pembayaran">
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="jumlah">Jumlah:</label>
+                                                <input type="number" class="form-control" id="jumlah" name="jumlah">
                                             </div>
                                         </div>
                                     </div>

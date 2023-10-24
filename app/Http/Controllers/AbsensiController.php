@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
+use App\Models\Pegawai;
 
 class AbsensiController extends Controller
 {
@@ -73,26 +74,25 @@ class AbsensiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAbsensiRequest $request, Absensi $absensi)
+    public function update(UpdateAbsensiRequest $request, $id)
     {
-        $validatedData = $request->validated();
-        $absensi->update($validatedData)([
+        $absensi = Absensi::find($id);
+        $absensi->update([
             'id_pegawai' => $request->input('id_pegawai'),
             'tanggal' => $request -> input('tanggal'),
             'keterangan' => $request->input('keterangan')
         ]);
 
-        return redirect()->route('absensi')->with('success', 'Absensi update successfully.');
+        return redirect()->route('Absensi')->with('success', 'Absensi update successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Absensi $absensi)
+    public function destroy($id)
     {
-        $absensi = Absensi::find($absensi);
+        $absensi = Absensi::find($id);
         $absensi->delete();
-
-        return redirect()->route('Absensi')->with('success', 'Absensi deleted successfully');
+        return redirect()->route('Absensi')->with('Auccess', 'Absensi deleted successfully');
     }
 }

@@ -193,7 +193,7 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Foto</th>
-                                        <th scope="col">ID Pegawai</th>
+                                        <th scope="col">NIP</th>
                                         <th scope="col">Jabatan</th>
                                         <th scope="col">Alamat</th>
                                         <th scope="col">No Tlp</th>
@@ -214,8 +214,9 @@
                                             <td>{{ $db->alamat }}</td>
                                             <td>{{ $db->no_tlp }}</td>
                                             <td>{{ 'Rp ' . number_format($db->gaji, 0, ',', '.') }}</td>
-                                            <td style="display: flex; align-items: center;">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">
                                                     Edit
                                                 </button>
                                                 <form action="/dashboard/{{ $db->id }}" method="post">
@@ -224,6 +225,7 @@
                                                     <button type="submit" class="btn btn-danger" id="tambahButton">
                                                         Hapus
                                                     </button>
+                                                </div>
                                                 </form>
                                             </td>
                                         </tr>
@@ -258,7 +260,7 @@
                                                           name="nama">
                                                   </div>
                                                   <div class="form-group">
-                                                      <label for="id_pegawai">ID Pegawai:</label>
+                                                      <label for="id_pegawai">NIP:</label>
                                                       <input type="number" value="{{ $item->id_pegawai }}" class="form-control" id="id_pegawai"
                                                           name="id_pegawai">
                                                   </div>
@@ -325,7 +327,7 @@
                                                         name="nama">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">ID Pegawai:</label>
+                                                    <label for="id_pegawai">NIP:</label>
                                                     <input type="number" class="form-control" id="id_pegawai"
                                                         name="id_pegawai">
                                                 </div>

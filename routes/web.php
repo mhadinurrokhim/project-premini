@@ -42,8 +42,8 @@ Route::put('/update/{id}', [PegawaiController::class, 'update'])->name('update')
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
 // Route::post('create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
 Route::post('/create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
-Route::post('/update', [AbsensiController::class, 'update'])->name('updateAbsensi');
-Route::delete('/data/{id}', [AbsensiController::class, 'destroy']);
+Route::put('/update/{id}', [AbsensiController::class, 'update'])->name('updateAbsensi');
+Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
 
 
 Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
@@ -68,9 +68,6 @@ Route::middleware(['guest'])->group(function(){
     Route::get('logout',[AuthController::class, 'logout']);
 
 });
-
-
-
 
 Route::get('/email/verify', function () {
     return view('Auth.verify-email');
