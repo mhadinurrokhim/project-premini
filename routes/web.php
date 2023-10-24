@@ -45,6 +45,7 @@ Route::put('/update/{id}', [PegawaiController::class, 'update'])->name('update')
 
 
 Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
+// Route::post('create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
 Route::post('/create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
 Route::post('/update', [AbsensiController::class, 'update'])->name('updateAbsensi');
 Route::delete('/data/{id}', [AbsensiController::class, 'destroy']);

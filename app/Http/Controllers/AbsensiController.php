@@ -13,8 +13,8 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $data = Absensi::all();
-        return view('User.Absensi', compact('data'));
+        $absensi = Absensi::all();
+        return view('User.Absensi', compact('absensi'));
     }
 
     public function Absen()
@@ -23,7 +23,7 @@ class AbsensiController extends Controller
     }
 
 
-    
+
     public function create()
     {
         return view('User.Absensi');
@@ -34,19 +34,19 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-
         $this->validate($request,[
-            'pegawai_id'=>'required',
+            'id_pegawai'=>'required',
             'tanggal'=>'required',
             'keterangan'=>'required'
         ],[
-            'pegawai_id.required'=>'pegawai_id tidak boleh kosong',
-            'tanggal.required'=>'id tanggal tidak boleh kosong',
+            'id_pegawai.required'=>'pegawai id tidak boleh kosong',
+            'tanggal.required'=>'tanggal tidak boleh kosong',
             'keterangan.required'=> 'keterngan tidak boleh kosong'
         ]);
 
+
         $absensi = new Absensi;
-        $absensi->pegawai_id = $request->pegawai_id;
+        $absensi->id_pegawai = $request->id_pegawai;
         $absensi->tanggal=$request->tanggal;
         $absensi->keterangan=$request->keterangan;
         $absensi->save();
@@ -59,7 +59,7 @@ class AbsensiController extends Controller
      */
     public function show(Absensi $absensi)
     {
-        //
+        return view('User.Absensi', compact('absensi'));
     }
 
     /**
@@ -67,7 +67,7 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi)
     {
-        //
+        return view('Absensi', compact('absensi'));
     }
 
     /**
@@ -76,9 +76,13 @@ class AbsensiController extends Controller
     public function update(UpdateAbsensiRequest $request, Absensi $absensi)
     {
         $validatedData = $request->validated();
-        $absensi->update($validatedData);
+        $absensi->update($validatedData)([
+            'id_pegawai' => $request->input('id_pegawai'),
+            'tanggal' => $request -> input('tanggal'),
+            'keterangan' => $request->input('keterangan')
+        ]);
 
-        return redirect()->route('data')->with('success', 'Absensi update successfully.');
+        return redirect()->route('absensi')->with('success', 'Absensi update successfully.');
     }
 
     /**
@@ -89,6 +93,6 @@ class AbsensiController extends Controller
         $absensi = Absensi::find($absensi);
         $absensi->delete();
 
-        return redirect()->route('data')->with('success', 'Pegawai deleted successfully');
+        return redirect()->route('Absensi')->with('success', 'Absensi deleted successfully');
     }
 }
