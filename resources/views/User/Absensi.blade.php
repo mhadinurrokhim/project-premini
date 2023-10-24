@@ -48,68 +48,59 @@
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    CT
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+            <li>
+                <a href="{{ route('Dashboard') }}">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>PEGAWAI</p>
                 </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                    Creative Tim
+            </li>
+            <li class="active">
+                <a href="{{ route('Absensi') }}">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>ABSENSI</p>
                 </a>
-            </div>
-            <div class="sidebar-wrapper" id="sidebar-wrapper">
-                <ul class="nav">
-                    <li >
-                        <a href="{{ route('Dashboard') }}">
-                            <i class="now-ui-icons users_single-02"></i>
-                            <p>PEGAWAI</p>
-                        </a>
-                    </li>
-                    <li>
-                        <li class="active ">
-                            <a href="{{ route('Absensi') }}">
-                                <i class="now-ui-icons users_single-02"></i>
-                                <p>ABSENSI</p>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="{{ route('Gaji') }}">
-                            <i class="now-ui-icons location_map-big"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Jabatan') }}">
-                            <i class="now-ui-icons ui-1_bell-53"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('User') }}">
-                            <i class="now-ui-icons users_single-02"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Table') }}">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Typography') }}">
-                            <i class="now-ui-icons text_caps-small"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout">
-                            <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            </li>
+            <li>
+                <a href="{{ route('Gaji') }}">
+                    <i class="now-ui-icons location_map-big"></i>
+                    <p>GAJI</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('Jabatan') }}">
+                    <i class="now-ui-icons ui-1_bell-53"></i>
+                    <p>JABATAN</p>
+                </a>
+            </li>
+            {{-- <li>
+                <a href="{{ route('User') }}">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>User Profile</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('Table') }}">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>Table List</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('Typography') }}">
+                    <i class="now-ui-icons text_caps-small"></i>
+                    <p>Typography</p>
+                </a>
+            </li> --}}
+            <li>
+                <a href="/logout">
+                    <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                    <p>Log out</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
         <div class="main-panel" id="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -227,41 +218,40 @@
                     </div>
                   </div>
                   <!-- Modal Tambah -->
-                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="tambahModalLabel">Tambah Data Absensi</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form form action="{{ route('SimpanAbsensi') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                    <div class="form-group">
-                                        <label for="id_pegawai">ID Pegawai:</label>
-                                        <input type="text" class="form-control" id="id_pegawai">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tanggal">Tanggal:</label>
-                                        <input type="date" class="form-control" id="tanggal">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="keterangan">Keterangan:</label>
-                                        <textarea class="form-control" id="keterangan" rows="4" name="keterangan"
-                                        class="form-control @error('alamat') is-invalid @enderror"
-                                        id="keterangan"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                  <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="tambahModalLabel">Tambah Data Absensi</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <form form action="{{ route('SimpanAbsensi') }}" method="post"
+                                  enctype="multipart/form-data">
+                                  @csrf
+                                      <div class="form-group">
+                                          <label for="id_pegawai">ID Pegawai:</label>
+                                          <input type="text" class="form-control" id="id_pegawai">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="tanggal">Tanggal:</label>
+                                          <input type="date" class="form-control" id="tanggal">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="keterangan">Keterangan:</label>
+                                          <textarea class="form-control" id="keterangan" rows="4" name="keterangan"
+                                          class="form-control @error('alamat') is-invalid @enderror"
+                                          id="keterangan"></textarea>
+                                      </div>
+                                  </form>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                  <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 <script>
                     // Handle button click to show modal
                     document.getElementById("tambahButton").addEventListener("click", function () {

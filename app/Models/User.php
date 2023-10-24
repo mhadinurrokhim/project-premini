@@ -33,6 +33,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class);
+    // }
+
     /**
      * The attributes that should be cast.
      *

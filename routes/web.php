@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\TableController;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TypograhpyController;
@@ -68,15 +70,20 @@ Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typograp
 // Route::get('/sesi/register', [SessionController::class, 'register'])->name('register');
 // Route::post('/sesi/create', [SessionController::class, 'create']);
 
+Route::middleware(['guest'])->group(function(){
+    Route::get('/', [AuthController::class, 'index']);
+    Route::get('/login',[AuthController::class, 'index'])->name('login');
+    Route::post('/proseslogin',[AuthController::class, 'proseslogin'])->name('proseslogin');
+    Route::get('/register',[AuthController::class, 'register'])->name('register');
+    Route::post('/Createregister',[AuthController::class, 'Createregister'])->name('Createregister');
+    Route::get('Forget',[AuthController::class, 'Forget']);
+    Route::get('change',[AuthController::class, 'change']);
+    Route::get('logout',[AuthController::class, 'logout']);
 
-Route::get('/', [AuthController::class, 'index']);
-Route::get('/login',[AuthController::class, 'index'])->name('login');
-Route::post('/proseslogin',[AuthController::class, 'proseslogin'])->name('proseslogin');
-Route::get('/register',[AuthController::class, 'register'])->name('register');
-Route::post('/Createregister',[AuthController::class, 'Createregister'])->name('Createregister');
-Route::get('Forget',[AuthController::class, 'Forget']);
-Route::get('change',[AuthController::class, 'change']);
-Route::get('logout',[AuthController::class, 'logout']);
+});
+Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
+Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
+
 Route::get('/email/verify', function () {
     return view('Auth.verify-email');
 })->middleware('auth')->name('verification.notice');

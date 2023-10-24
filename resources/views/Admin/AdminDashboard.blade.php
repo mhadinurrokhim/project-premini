@@ -58,14 +58,14 @@
             </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
-                    <li>
+                    <li class="active">
                         <a href="{{ route('AdminDashboard') }}">
                             <i class="now-ui-icons users_single-02"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <li class="active">
+                        <li>
                             <a href="{{ route('Konfirmasi') }}">
                                 <i class="now-ui-icons users_single-02"></i>
                                 <p>konfrimasi</p>
@@ -122,7 +122,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo">KONFIRMASI</a>
+                        <a class="navbar-brand" href="#pablo">DASHBOARD</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,7 +189,7 @@
                 <div class="panel-header panel-header-sm">
                 </div>
                 <br><br>
-                <h1>konfirmasi</h1>
+                <h1>Dashboard</h1>
 
                 {{-- <div class="container">
                     <div class="card">

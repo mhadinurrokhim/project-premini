@@ -22,12 +22,11 @@ class AbsensiController extends Controller
         return view('User.Absensi');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    
     public function create()
     {
-        // return view('User.Absensi');
+        return view('User.Absensi');
     }
 
     /**
@@ -35,15 +34,6 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-        // $validator =validator($request->all(),[
-        //     'pegawai_id',
-        //     'tanggal',
-        //     'keterangan'
-        // ],[
-        //     'pegawai_id.required'=>'id pegawai tidak boleh kosong',
-        //     'tanggal.required'=>'tanggal tidak boleh kosong',
-        //     'keterangan.required'=> 'keterangan tidak boleh kosong'
-        // ]);
 
         $this->validate($request,[
             'pegawai_id'=>'required',
@@ -54,14 +44,13 @@ class AbsensiController extends Controller
             'tanggal.required'=>'id tanggal tidak boleh kosong',
             'keterangan.required'=> 'keterngan tidak boleh kosong'
         ]);
-// dd($request->all());
+
         $absensi = new Absensi;
         $absensi->pegawai_id = $request->pegawai_id;
         $absensi->tanggal=$request->tanggal;
         $absensi->keterangan=$request->keterangan;
         $absensi->save();
 
-        // dd($request);
         return redirect()->back();
     }
 
