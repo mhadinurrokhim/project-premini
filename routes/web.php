@@ -31,12 +31,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// Route::get('/Dashboard',[HomeController::class, 'Dashboard']);
-// Route::get('/icon', [HomeController::class, 'icon']);
 
 Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
 Route::post('/SimpanPegawai', [PegawaiController::class, 'store'])->name('SimpanPegawai');
@@ -58,18 +53,9 @@ Route::get('/User', [UserController::class, 'index'])->name('User');
 Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');
 
 
-// Route::get('/login',[HomeController::class,'Login']);
+Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
+Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
 
-
-// Route::middleware([]);
-// Route::get('/',function(){
-//     return view('login');
-// });
-// Route::get('/sesi', [SessionController::class, 'index']);
-// Route::post('/sesi/login', [SessionController::class, 'Login']);
-// Route::get('/sesi/logout', [SessionController::class, 'logout']);
-// Route::get('/sesi/register', [SessionController::class, 'register'])->name('register');
-// Route::post('/sesi/create', [SessionController::class, 'create']);
 
 Route::middleware(['guest'])->group(function(){
     Route::get('/', [AuthController::class, 'index']);
@@ -82,8 +68,9 @@ Route::middleware(['guest'])->group(function(){
     Route::get('logout',[AuthController::class, 'logout']);
 
 });
-Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
-Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
+
+
+
 
 Route::get('/email/verify', function () {
     return view('Auth.verify-email');
@@ -95,14 +82,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-
-
-// Route::get('/Login', [AuthController::class, 'Login']);
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-
-//delete
 
 
 

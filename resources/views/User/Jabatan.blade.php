@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Now UI Dashboard by Creative Tim
+        Pegawai
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -182,51 +182,40 @@
                 </div>
                 <br><br>
 
-                {{-- <div class="container">
+                <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Data Pegawai</h5>
+                            <h5 class="card-title">GAJI</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Foto</th>
-                                        <th scope="col">ID Pegawai</th>
-                                        <th scope="col">Jabatan</th>
-                                        <th scope="col">Alamat</th>
-                                        <th scope="col">No Tlp</th>
-                                        <th scope="col">Gaji</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col">jabatan</th>
+                                        <th scope="col">dekskripsi</th>
+                                        <th scope="col">gaji</th>
+                                        <th scope="col">aksi</th>
                                     </tr>
-
-                                    @foreach ($dashboard as $no => $db)
-                                        <tr>
-                                            <td>{{ ++$no }}</td>
-                                            <td>{{ $db->nama }}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/' . $db->foto) }}" alt=""
-                                                    srcset="" width="70" height="110">
-                                            </td>
-                                            <td>{{ $db->id_pegawai }}</td>
-                                            <td>{{ $db->jabatan }}</td>
-                                            <td>{{ $db->alamat }}</td>
-                                            <td>{{ $db->no_tlp }}</td>
-                                            <td>{{ 'Rp ' . number_format($db->gaji, 0, ',', '.') }}</td>
-                                            <td style="display: flex; align-items: center;">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">
-                                                    Edit
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach($data as $jabatan)
+                                    <tr>
+                                        <td>{{ ++$no }}</td>
+                                        <td>{{ $jabatan->jabatan }}</td>
+                                        <td>{{ $jabatan->dekskripsi }}</td>
+                                        <td>{{ $jabatan->gaji }}</td>
+                                        <td style="display: flex; align-items: center;">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">
+                                                Edit
+                                            </button>
+                                            <form>
+                                                <button type="submit" class="btn btn-danger" id="tambahButton">
+                                                    Hapus
                                                 </button>
-                                                <form action="/dashboard/{{ $db->id }}" method="post">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger" id="tambahButton">
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                            </form>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </thead>
                             </table>
@@ -236,8 +225,7 @@
 
 
                     <!-- Modal Edit -->
-                    @foreach ($dashboard as $item)
-                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -245,45 +233,38 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/update/{{$item->id}}" method="POST">
-                                    @csrf
-                                    @method('PUT')
+                                <form>
                                     <div>
                                       <div class="container">
                                           <div class="row">
                                               <div class="col-6">
                                                   <div class="form-group">
-                                                      <label for="nama">Nama:</label>
-                                                      <input type="text" value="{{ $item->nama }}" class="form-control" id="nama"
-                                                          name="nama">
+                                                      <label for="jabatan">jabatan:</label>
+                                                      <input type="text" value="" class="form-control" id="jabatan"
+                                                          name="jabatan">
                                                   </div>
                                                   <div class="form-group">
-                                                      <label for="id_pegawai">ID Pegawai:</label>
-                                                      <input type="number" value="{{ $item->id_pegawai }}" class="form-control" id="id_pegawai"
-                                                          name="id_pegawai">
+                                                      <label for="dekskripsi">Dekskirpsi:</label>
+                                                      <input type="text" value="" class="form-control" id="dekskripsi"
+                                                          name="dekskripsi">
                                                   </div>
                                               </div>
                                               <div class="col-6">
                                                   <div class="form-group">
-                                                      <label for="jabatan">Jabatan:</label>
-                                                      <input type="text" value="{{ $item->jabatan }}" class="form-control" id="jabatan"
-                                                          name="jabatan">
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label for="no_tlp">No Tlp:</label>
-                                                      <input type="number" value="{{ $item->no_tlp }}" class="form-control" id="no_tlp"
-                                                          name="no_tlp">
+                                                      <label for="gaji">gaji:</label>
+                                                      <input type="number" value="" class="form-control" id="gaji"
+                                                          name="gaji">
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label for="gaji">Gaji:</label>
-                                          <input type="number" value="{{ $item->gaji }}" class="form-control" id="gaji" name="gaji">
+                                          <input type="number" value="" class="form-control" id="gaji" name="gaji">
                                       </div>
                                       <div class="form-group">
                                           <label for="alamat">Alamat:</label>
-                                          <textarea class="form-control" id="alamat" rows="4" name="alamat">{{ $item->alamat }}</textarea>
+                                          <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
                                       </div>
                                       <div class="">
                                           <label class="form-label" for="foto">Fotos:</label>
@@ -301,71 +282,49 @@
                           </div>
                         </div>
                       </div>
-                    @endforeach
 
                 <!-- Modal Tambah-->
-                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Pegawai</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('SimpanPegawai') }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
+                                <form>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="nama">Nama:</label>
-                                                    <input type="text" class="form-control" id="nama"
-                                                        name="nama">
+                                                    <label for="jabatan">jabatan:</label>
+                                                    <input type="text" value="" class="form-control" id="jabatan"
+                                                        name="jabatan">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">ID Pegawai:</label>
-                                                    <input type="number" class="form-control" id="id_pegawai"
-                                                        name="id_pegawai">
+                                                    <label for="dekskripsi">Dekskirpsi:</label>
+                                                    <input type="text" value="" class="form-control" id="dekskripsi"
+                                                        name="dekskripsi">
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="jabatan">Jabatan:</label>
-                                                    <input type="text" class="form-control" id="jabatan"
-                                                        name="jabatan">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="no_tlp">No Tlp:</label>
-                                                    <input type="number" class="form-control" id="no_tlp"
-                                                        name="no_tlp">
+                                                    <label for="gaji">gaji:</label>
+                                                    <input type="number" value="" class="form-control" id="gaji"
+                                                        name="gaji">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="gaji">Gaji:</label>
-                                        <input type="number" class="form-control" id="gaji" name="gaji">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat">Alamat:</label>
-                                        <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
-                                    </div>
-                                    <div class="">
-                                        <label class="form-label" for="foto">Fotos:</label>
-                                        <input type="file" name="foto"
-                                            class="form-control @error('foto') is-invalid @enderror"
-                                            id="previewImage">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
                             </div>
                         </div>
-                        </form>
-                    </div> --}}
+                    </div>
+                </div>
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

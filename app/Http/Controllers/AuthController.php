@@ -82,26 +82,6 @@ class AuthController extends Controller
         return redirect()->back()->withInput($request->except('password'))->withErrors(['password' => 'Invalid credentials']);
 
     }
-    // public function proseslogin(Request $request){
-    //     $request->validate([
-    //         'email' => 'required',
-    //         'password' => 'required'
-    //     ], [
-    //         'email.required' => 'Email wajib diisi',
-    //         'password.required' => 'Password wajib diisi',
-    //     ]);
-
-    //     $infologin = [
-    //         'email' => $request->email,
-    //         'password' => $request->password
-    //     ];
-
-    //     if (Auth::attempt($infologin)) {
-    //         return redirect()->route('login')->withErrors('Username dan password yang dimasukkan tidak valid');
-    //     } else {
-    //         return redirect()->route('Dashboard')->with('success', 'Berhasil login');
-    //     }
-    // }
 
     public function logout(){
         Auth::logout();

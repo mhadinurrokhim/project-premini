@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
-            $table->date('nama_jabatan');
-            $table->time('deskripsi_jabatan');
-            $table->time('persyaratan_pekerjaan');
+            $table->string('jabatan');
+            $table->string('dekskripsi');
+            $table->decimal('gaji');
             $table->timestamps();
         });
     }

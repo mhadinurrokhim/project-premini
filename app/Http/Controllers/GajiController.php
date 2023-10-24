@@ -13,7 +13,8 @@ class GajiController extends Controller
      */
     public function index()
     {
-        return view('User.Gaji');
+        $data= Gaji::all();
+        return view('User.Gaji', compact('data'));
     }
 
     /**

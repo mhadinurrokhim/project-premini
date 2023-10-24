@@ -9,8 +9,8 @@ class Jabatan extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'nama_jabatan',
-        'deskripsi_jabatan',
-        'persyaratan_pekerjaan'
+        'jabatan',
+        'dekskripsi',
+        'gaji'
     ];
 }

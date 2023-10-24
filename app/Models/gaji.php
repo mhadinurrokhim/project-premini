@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class gaji extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'id_pegawai',
+        'jumlah',
+        'tanggal_pembayaran',
+    ];
 }
