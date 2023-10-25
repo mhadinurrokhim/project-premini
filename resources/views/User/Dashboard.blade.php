@@ -75,24 +75,6 @@
                     <p>JABATAN</p>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ route('User') }}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>User Profile</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Table') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>Table List</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Typography') }}">
-                    <i class="now-ui-icons text_caps-small"></i>
-                    <p>Typography</p>
-                </a>
-            </li> --}}
             <li>
                 <a href="/logout">
                     <i class="now-ui-icons arrows-1_cloud-download-93"></i>
@@ -257,39 +239,39 @@
                                                   <div class="form-group">
                                                       <label for="nama">Nama:</label>
                                                       <input type="text" value="{{ $item->nama }}" class="form-control" id="nama"
-                                                          name="nama">
+                                                          name="nama" required>
                                                   </div>
                                                   <div class="form-group">
                                                       <label for="id_pegawai">NIP:</label>
                                                       <input type="number" value="{{ $item->id_pegawai }}" class="form-control" id="id_pegawai"
-                                                          name="id_pegawai">
+                                                          name="id_pegawai" required>
                                                   </div>
                                               </div>
                                               <div class="col-6">
                                                   <div class="form-group">
                                                       <label for="jabatan">Jabatan:</label>
                                                       <input type="text" value="{{ $item->jabatan }}" class="form-control" id="jabatan"
-                                                          name="jabatan">
+                                                          name="jabatan" required>
                                                   </div>
                                                   <div class="form-group">
                                                       <label for="no_tlp">No Tlp:</label>
                                                       <input type="number" value="{{ $item->no_tlp }}" class="form-control" id="no_tlp"
-                                                          name="no_tlp">
+                                                          name="no_tlp" required>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label for="gaji">Gaji:</label>
-                                          <input type="number" value="{{ $item->gaji }}" class="form-control" id="gaji" name="gaji">
+                                          <input type="number" value="{{ $item->gaji }}" class="form-control" id="gaji" name="gaji" required>
                                       </div>
                                       <div class="form-group">
                                           <label for="alamat">Alamat:</label>
-                                          <textarea class="form-control" id="alamat" rows="4" name="alamat">{{ $item->alamat }}</textarea>
+                                          <textarea class="form-control" id="alamat" rows="4" name="alamat" required>{{ $item->alamat }}</textarea>
                                       </div>
                                       <div class="">
                                           <label class="form-label" for="foto">Foto:</label>
-                                          <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"id="previewImage" >
+                                          <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"id="previewImage" required>
                                       </div>
                                     </div>
                                   </div>

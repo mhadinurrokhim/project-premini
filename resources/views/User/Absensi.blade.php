@@ -74,24 +74,6 @@
                     <p>JABATAN</p>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ route('User') }}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>User Profile</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Table') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>Table List</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Typography') }}">
-                    <i class="now-ui-icons text_caps-small"></i>
-                    <p>Typography</p>
-                </a>
-            </li> --}}
             <li>
                 <a href="/logout">
                     <i class="now-ui-icons arrows-1_cloud-download-93"></i>

@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PegawaiController extends Controller
 {
@@ -16,8 +17,7 @@ class PegawaiController extends Controller
     {
         $dashboard = pegawai::all();
         // dd(auth()->user());
-        return view('User.Dashboard',compact('dashboard'));
-
+        return view('User.Dashboard', compact('dashboard'));
     }
 
     /**
@@ -33,7 +33,8 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(),
+        [
             'nama' => 'required',
             'id_pegawai' => 'required',
             'jabatan' => 'required',
@@ -51,22 +52,25 @@ class PegawaiController extends Controller
             'no_tlp.required' => 'No. Tlp tidak boleh kosong',
         ]);
 
-        // Simpan file gambar baru
-        $file = $request->file('foto');
-        $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/foto', $fileName);
+        if ($validator)
+        {
+            return redirect('/Dashboard')->with('error', 'Data harus di isi sesuai');
+        }
 
-        $pegawai = new Pegawai;
-        $pegawai->nama = $request->nama;
-        $pegawai->foto = $fileName;
-        $pegawai->id_pegawai = $request->id_pegawai;
-        $pegawai->jabatan = $request->jabatan;
-        $pegawai->gaji = $request->gaji;
-        $pegawai->alamat = $request->alamat;
-        $pegawai->no_tlp = $request->no_tlp;
-        $pegawai->save();
+            $file = $request->file('foto');
+            $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/foto', $fileName);
 
-        return redirect()->back();
+            $pegawai = new Pegawai;
+            $pegawai->nama = $request->nama;
+            $pegawai->foto = $fileName;
+            $pegawai->id_pegawai = $request->id_pegawai;
+            $pegawai->jabatan = $request->jabatan;
+            $pegawai->gaji = $request->gaji;
+            $pegawai->alamat = $request->alamat;
+            $pegawai->no_tlp = $request->no_tlp;
+            $pegawai->save();
+         return redirect('/Dashboard')->with('success', 'Data berhasil di tambahkan');
     }
 
     /**
@@ -89,43 +93,43 @@ class PegawaiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    $pegawai = Pegawai::find($id);
+    {
+        $pegawai = Pegawai::find($id);
 
-    // Mengambil foto yang sudah ada sebelumnya
-    $existingFoto = $pegawai->foto;
+        // Mengambil foto yang sudah ada sebelumnya
+        $existingFoto = $pegawai->foto;
 
-    $pegawai->update([
-        'nama' => $request->input('nama'),
-        'id_pegawai' => $request->input('id_pegawai'),
-        'jabatan' => $request->input('jabatan'),
-        'gaji' => $request->input('gaji'),
-        'alamat' => $request->input('alamat'),
-        'no_tlp' => $request->input('no_tlp'),
-    ]);
-
-    // Periksa apakah ada file gambar baru yang diunggah
-    if ($request->hasFile('foto')) {
-        // Validasi dan simpan foto yang baru diunggah
-        $this->validate($request, [
-            'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan Anda
+        $pegawai->update([
+            'nama' => $request->input('nama'),
+            'id_pegawai' => $request->input('id_pegawai'),
+            'jabatan' => $request->input('jabatan'),
+            'gaji' => $request->input('gaji'),
+            'alamat' => $request->input('alamat'),
+            'no_tlp' => $request->input('no_tlp'),
         ]);
 
-        $file = $request->file('foto');
-        $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('storage/foto'), $fileName);
+        // Periksa apakah ada file gambar baru yang diunggah
+        if ($request->hasFile('foto')) {
+            // Validasi dan simpan foto yang baru diunggah
+            $this->validate($request, [
+                'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan Anda
+            ]);
 
-        // Update atribut foto hanya jika ada file gambar yang diunggah
-        $pegawai->update(['foto' => $fileName]);
+            $file = $request->file('foto');
+            $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/foto'), $fileName);
 
-        // Hapus foto yang lama jika sudah ada
-        if ($existingFoto) {
-            Storage::delete('foto/' . $existingFoto);
+            // Update atribut foto hanya jika ada file gambar yang diunggah
+            $pegawai->update(['foto' => $fileName]);
+
+            // Hapus foto yang lama jika sudah ada
+            if ($existingFoto) {
+                Storage::delete('foto/' . $existingFoto);
+            }
         }
-    }
 
-    return redirect()->route('Dashboard')->with('success', 'Pegawai berhasil diperbarui.');
-}
+        return redirect()->route('Dashboard')->with('success', 'Pegawai berhasil diperbarui.');
+    }
 
 
     /**
@@ -149,10 +153,4 @@ class PegawaiController extends Controller
 
         return redirect()->route('Dashboard')->with('error', 'Pegawai not found');
     }
-
-
-
-
-
-
 }

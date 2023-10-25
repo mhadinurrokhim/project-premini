@@ -31,7 +31,8 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = Jabatan::make($request->all(),
+        [
             'jabatan'=>'required',
             'deskripsi'=>'required',
             'gaji'=>'required'
@@ -41,13 +42,18 @@ class JabatanController extends Controller
             'gaji.required'=> 'gaji pembayaran tidak boleh kosong'
         ]);
 
+        if ($validator)
+        {
+            return redirect('/Jabatan')->with('error', 'Data harus di isi sesuai');
+        }
+
         $jabatan = new Jabatan;
         $jabatan->jabatan = $request->jabatan;
         $jabatan->deskripsi=$request->deskripsi;
         $jabatan->gaji=$request->gaji;
         $jabatan->save();
 
-        return redirect()->back();
+        return redirect('/jabatan')->back('error', 'Data harus di isi sesuai');
     }
 
     /**
