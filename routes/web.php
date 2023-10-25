@@ -107,13 +107,3 @@ Route::get('/verify-email', function(){
     return 'ini halaman profile. penanda bahwa user sudah login dan terverifikasi';
 })->middleware(['auth', 'verified']);
 
-
-
-// resetpassword
-// Route::get('/forgot-password', function () {
-//     return view('auth.Forget');
-// })->middleware('guest')->name('password.request');
-
-// Route::post('/forgot-password', function (Request $request) {
-
-// })->middleware('guest')->name('password.email');

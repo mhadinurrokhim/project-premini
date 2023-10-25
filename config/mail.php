@@ -99,7 +99,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'artgalleryomega@gmail.com.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'artgalleryomega@gmail.com.com'), 
         'name' => env('MAIL_FROM_NAME', 'HEllo Laravel'),
     ],
 

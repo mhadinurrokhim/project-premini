@@ -236,9 +236,7 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                  <form form action="{{ route('SimpanAbsensi') }}" method="post"
-                                  enctype="multipart/form-data">
-                                  @csrf
+                                  <form >
                                       <div class="form-group">
                                           <label for="id_pegawai">ID Pegawai:</label>
                                           <input type="text" class="form-control" id="id_pegawai">

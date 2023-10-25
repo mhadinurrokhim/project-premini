@@ -17,4 +17,8 @@ class Pegawai extends Model
         'alamat',
         'no_tlp'
     ];
+    public function konfirmasi()
+    {
+        return $this->hasMany(Konfirmasi::class, 'id_pegawai', 'id_pegawai');
+    }
 }

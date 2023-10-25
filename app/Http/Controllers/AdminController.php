@@ -14,9 +14,6 @@ class AdminController extends Controller
     public function index()
     {
         return view('Admin.AdminDashboard');
-        // echo "halo";
-        // echo "<h1>". Auth::user()->name."</h1>";
-        // echo "<a href='logout'>logout >></a>";
     }
 
     /**

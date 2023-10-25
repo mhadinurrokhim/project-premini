@@ -23,6 +23,6 @@ class UserMiddleware
             return redirect()->back()->with('error', "Anda tidak memiliki akses ke halaman ini");
         }
 
-        return redirect('/')->with('error', "anda harus login");
+        return redirect('/')->with('error', "anda harus login terlebih dahulu");
     }
 }

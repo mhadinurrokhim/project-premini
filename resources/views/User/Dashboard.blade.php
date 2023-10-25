@@ -167,7 +167,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Data Pegawai</h5>
+                            <h5 class="card-title">Isi data anda</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
