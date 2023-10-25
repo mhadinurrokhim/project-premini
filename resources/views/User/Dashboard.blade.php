@@ -204,7 +204,7 @@
                                                 <form action="/dashboard/{{ $db->id }}" method="post">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger" id="tambahButton">
+                                                    <button type="submit" class="btn btn-danger" id="tambahButton"onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
                                                         Hapus
                                                     </button>
                                                 </div>

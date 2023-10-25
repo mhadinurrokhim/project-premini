@@ -35,8 +35,7 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-        $validator = Absensi::make($request->all(),
-        [
+        $this->validate($request,[
             'id_pegawai'=>'required',
             'tanggal'=>'required',
             'keterangan'=>'required'
@@ -46,10 +45,6 @@ class AbsensiController extends Controller
             'keterangan.required'=> 'keterngan tidak boleh kosong'
         ]);
 
-        if ($validator)
-        {
-            return redirect('/Absensi')->with('error', 'Data harus di isi sesuai');
-        }
 
         $absensi = new Absensi;
         $absensi->id_pegawai = $request->id_pegawai;
@@ -57,7 +52,7 @@ class AbsensiController extends Controller
         $absensi->keterangan=$request->keterangan;
         $absensi->save();
 
-        return redirect('/Absensi')->back('success', 'Data berhasil di tambahkan');
+        return redirect()->back();
     }
 
     /**
@@ -98,6 +93,7 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::find($id);
         $absensi->delete();
-        return redirect()->route('Absensi')->with('Auccess', 'Absensi deleted successfully');
+        return back()->with('success', 'Absensi deleted successfully');
     }
+
 }

@@ -88,6 +88,6 @@ class GajiController extends Controller
     {
         $gaji = gaji::find($id);
         $gaji->delete();
-        return back()->with('Success', 'Gaji deleted successfully');
+        return back()->with('Auccess', 'Gaji deleted successfully');
     }
 }

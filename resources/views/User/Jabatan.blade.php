@@ -193,7 +193,6 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Jabatan</th>
                                         <th scope="col">Gaji</th>
-                                        <th scope="col">Deskripsi</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -206,7 +205,6 @@
                                         <td>{{$iteration + 1 }}</td>
                                         <td>{{ $jb->jabatan }}</td>
                                         <td>Rp {{ $jb->gaji }}</td>
-                                        <td>{{ $jb->deskripsi }}</td> <!-- Perbaiki penulisan "deskripsi" -->
                                         <td class="d-flex">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $jb->id }}" style="margin-right: 10px;">
                                                 Edit
@@ -257,10 +255,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                    <div class="form-group">
-                                                    <label for="dekskripsi">Dekskirpsi:</label>
-                                                    <textarea class="form-control" id="deskripsi" rows="4" name="deskripsi">{{ $jbt->deskripsi }}</textarea>
-                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
                                                     <button type="submit" class="btn btn-outline-warning">Simpan</button>
@@ -300,10 +294,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                            <div class="form-group">
-                                                <label for="deskripsi">Deskripsi:</label>
-                                                <textarea class="form-control" id="deskripsi" rows="4" name="deskripsi"></textarea>
-                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
                                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>

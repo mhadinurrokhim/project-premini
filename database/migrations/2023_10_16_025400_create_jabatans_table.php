@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('jabatan');
             $table->decimal('gaji');
-            $table->string('deskripsi');
             $table->timestamps();
         });
     }

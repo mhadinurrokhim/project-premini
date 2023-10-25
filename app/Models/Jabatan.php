@@ -10,7 +10,6 @@ class Jabatan extends Model
     use HasFactory;
     protected $fillable =[
         'jabatan',
-        'deskripsi',
         'gaji'
     ];
 }

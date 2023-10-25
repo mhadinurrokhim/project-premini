@@ -33,44 +33,35 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
+        Validator::make($request->all(),
         [
-            'nama' => 'required',
-            'id_pegawai' => 'required',
-            'jabatan' => 'required',
-            'gaji' => 'required',
-            'alamat' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan Anda
-            'no_tlp' => 'required',
-        ], [
-            'nama.required' => 'Nama tidak boleh kosong',
-            'id_pegawai.required' => 'ID pegawai tidak boleh kosong',
-            'jabatan.required' => 'Jabatan tidak boleh kosong',
-            'gaji.required' => 'Gaji tidak boleh kosong',
-            'alamat.required' => 'Alamat tidak boleh kosong',
-            'foto.required' => 'Foto tidak boleh kosong',
-            'no_tlp.required' => 'No. Tlp tidak boleh kosong',
+            'id_pegawai'=>'required',
+            'tanggal'=>'required',
+            'keterangan'=>'required'
+        ],[
+            'id_pegawai.required'=>'pegawai id tidak boleh kosong',
+            'tanggal.required'=>'tanggal tidak boleh kosong',
+            'keterangan.required'=> 'keterngan tidak boleh kosong'
         ]);
 
-        if ($validator)
-        {
-            return redirect('/Dashboard')->with('error', 'Data harus di isi sesuai');
-        }
-
+        try {
             $file = $request->file('foto');
             $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/foto', $fileName);
 
-            $pegawai = new Pegawai;
-            $pegawai->nama = $request->nama;
-            $pegawai->foto = $fileName;
-            $pegawai->id_pegawai = $request->id_pegawai;
-            $pegawai->jabatan = $request->jabatan;
-            $pegawai->gaji = $request->gaji;
-            $pegawai->alamat = $request->alamat;
-            $pegawai->no_tlp = $request->no_tlp;
-            $pegawai->save();
-         return redirect('/Dashboard')->with('success', 'Data berhasil di tambahkan');
+            Pegawai::create([
+                'nama' => $request->nama,
+                'foto' => $fileName,
+                'id_pegawai' => $request->id_pegawai,
+                'jabatan' => $request->jabatan,
+                'gaji' => $request->gaji,
+                'alamat' => $request->alamat,
+                'no_tlp' => $request->no_tlp
+            ]);
+        } catch (\Throwable $th) {
+            return redirect('/Dashboard')->with('error', 'Data harus di isi sesuai');
+        }
+        return redirect('/Dashboard')->with('success', 'Data berhasil di tambahkan');
     }
 
     /**
