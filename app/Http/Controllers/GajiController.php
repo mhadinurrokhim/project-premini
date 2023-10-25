@@ -63,7 +63,7 @@ class GajiController extends Controller
      */
     public function edit(gaji $gaji)
     {
-        return view('gaji', compact('gaji'));
+        return view('User.Gaji', compact('gaji'));
     }
 
     /**

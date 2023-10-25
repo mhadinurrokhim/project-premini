@@ -232,7 +232,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="update/{{$absen->id}}">
+                                <form method="POST" action="updateAbsensi/{{$absen->id}}">
                                     @csrf
                                     @method('PUT')
                                     <div class="container">
@@ -279,7 +279,7 @@
                                 <h5 class="modal-title" id="tambahModalLabel">Tambah Data Absensi</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="{{ route('SimpanAbsensi') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('storeAbsensi') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="container">

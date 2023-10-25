@@ -92,20 +92,20 @@
     </style>
     <img src="{{ asset('asset/loginregister.jpg') }}" alt="">
 
-    <form action="password.update" method="POST">
+    <form action="('password.update')" method="POST">
         @csrf
         <h1>Buat Password baru</h1>
         <input type="hidden" name="token" value="{{ request()->token }}">
         <input type="hidden" name="email" value="{{ request()->email }}">
         <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" name="passowrd" id="exampleInputPassword1">
           </div>
           <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Konfirmasi Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control"  name="password" id="exampleInputPassword1">
           </div>
-          <a href="/" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">reset</a>
+          <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">reset</button>
         </div>
       </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

@@ -18,6 +18,8 @@ use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TypograhpyController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -33,36 +35,43 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
-Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
-Route::post('/SimpanPegawai', [PegawaiController::class, 'store'])->name('SimpanPegawai');
-Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
-Route::put('/update/{id}', [PegawaiController::class, 'update'])->name('update');
+
+Route::middleware([AdminMiddleware::class])->group(function(){
+    Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
+    Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
+
+});
 
 
-Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
-// Route::post('create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
-Route::post('/create', [AbsensiController::class, 'store'])->name('SimpanAbsensi');
-Route::put('/update/{id}', [AbsensiController::class, 'update'])->name('updateAbsensi');
-Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
+Route::middleware([UserMiddleware::class])->group(function(){
+
+    Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
+    Route::post('/SimpanPegawai', [PegawaiController::class, 'store'])->name('SimpanPegawai');
+    Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
+    Route::put('/updatePegawai/{id}', [PegawaiController::class, 'update'])->name('updatePegawai');
 
 
-Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
-Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
-Route::put('/update/{id}', [GajiController::class, 'update'])->name('updateGaji');
-Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
+    Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
+    Route::post('/storeAbsensi', [AbsensiController::class, 'store'])->name('storeAbsensi');
+    Route::put('/updateAbsensi/{id}', [AbsensiController::class, 'update'])->name('updateAbsensi');
+    Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
 
 
-Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
-Route::get('/Table', [TableController::class, 'index'])->name('Table');
-Route::get('/User', [UserController::class, 'index'])->name('User');
-Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');
+    Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
+    Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
+    Route::put('/updateGaji/{id}', [GajiController::class, 'update'])->name('updateGaji');
+    Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
 
 
-Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
-Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
+    Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
+    Route::get('/Table', [TableController::class, 'index'])->name('Table');
+    Route::get('/User', [UserController::class, 'index'])->name('User');
+    Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');
 
 
-Route::middleware(['guest'])->group(function(){
+});
+
+
     Route::get('/', [AuthController::class, 'index']);
     Route::get('/login',[AuthController::class, 'index'])->name('login');
     Route::post('/proseslogin',[AuthController::class, 'proseslogin'])->name('proseslogin');
@@ -72,10 +81,10 @@ Route::middleware(['guest'])->group(function(){
     Route::get('change',[AuthController::class, 'change']);
     Route::get('logout',[AuthController::class, 'logout']);
 
-});
 
+// verifikasi saat register
 Route::get('/email/verify', function () {
-    return view('Auth.verify-email');
+    return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -84,48 +93,17 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('/verify-email', function(){
+    return 'ini halaman profile. penanda bahwa user sudah login dan terverifikasi';
+})->middleware(['auth', 'verified']);
 
 
 
+// resetpassword
+// Route::get('/forgot-password', function () {
+//     return view('auth.Forget');
+// })->middleware('guest')->name('password.request');
 
+// Route::post('/forgot-password', function (Request $request) {
 
-Route::get('/Forget', function () {
-    return view('Auth.login',);
-})->middleware('guest')->name('password.request');
-
-Route::post('/Forget', function (Request $request) {
-    $request->validate(['email' => 'required|email|exists:users,email']);
-
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
-
-    return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
-
-Route::get('/reset-password/{token}', function ($token) {
-
-    return view('auth.change', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
-
-Route::post('/reset-password', function (Request $request) {
-
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-
-        function ($user, $password) {
-            $user->forceFill([
-                'password' => Hash::make($password)
-            ])->setRememberToken(Str::random(60));
-
-            $user->save();
-
-            event(new PasswordReset($user));
-        }
-    );
-    return $status === Password::PASSWORD_RESET
-        ? redirect()->route('Guest.index')->with('status', __($status))
-        : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
+// })->middleware('guest')->name('password.email');

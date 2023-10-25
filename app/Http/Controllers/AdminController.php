@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -13,6 +14,9 @@ class AdminController extends Controller
     public function index()
     {
         return view('Admin.AdminDashboard');
+        // echo "halo";
+        // echo "<h1>". Auth::user()->name."</h1>";
+        // echo "<a href='logout'>logout >></a>";
     }
 
     /**

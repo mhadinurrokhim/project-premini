@@ -31,24 +31,28 @@ class AuthController extends Controller
     }
 
     public function Createregister(Request $request){
-
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
+        if (User::where('email', $request->email)->exists()) {
+            return redirect('/register')->with('error', 'Alamat email sudah terdaftar. Gunakan alamat email lain.');
+        }
         $data = [
             'name' => $request->name,
             'email' =>$request->email,
             'password' => Hash::make($request->password),
+            'changepassword' => $request->password,
+            'role' => 'user',
 
         ];
-        // event(new Registered($user));
-        // Auth::login($user);
+        $user = User::create($data); // Membuat pengguna baru dan menyimpannya
 
-        User::create($data);
-        return redirect('/login')->with('success', 'Berhasil register');
+        event(new Registered($user));
+        Auth::login($user);
+        return redirect('/register')->with('success', 'cek gmail untuk verifikasi email');
     }
 
     public function proseslogin(Request $request)
@@ -74,8 +78,14 @@ class AuthController extends Controller
         }
 
         if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            return redirect('/Dashboard')->with('success', 'Berhasil login');
-            return redirect('/login')->with('error', 'Email atau password salah');
+            if (auth()->user()->role == 'user'){
+                return redirect('/Dashboard')->with('success', 'Berhasil login');
+                return redirect('/login')->with('error', 'Email atau password salah');
+
+            }else if(auth()->user()->role == 'admin'){
+                return redirect('/AdminDashboard')->with('success', 'Berhasil login');
+                return redirect('/Konfirmasi')->with('error', 'Email atau password salah');
+            }
         }
 
 

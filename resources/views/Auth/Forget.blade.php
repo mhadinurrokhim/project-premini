@@ -102,7 +102,7 @@
             <div class="invalid-feedback" id="validasi">{{ $errors->first('email') }}</div>
             @endif
           </div>
-          <a href="/change" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</a>
+          <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</button>
         </div>
       </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

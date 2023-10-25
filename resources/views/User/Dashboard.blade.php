@@ -206,7 +206,7 @@
                                             <td>{{ ++$no }}</td>
                                             <td>{{ $db->nama }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/' . $db->foto) }}" alt=""
+                                                <img src="{{ asset('storage/foto/' . $db->foto) }}" alt=""
                                                     srcset="" width="70" height="110">
                                             </td>
                                             <td>{{ $db->id_pegawai }}</td>
@@ -247,7 +247,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/update/{{$item->id}}" method="POST">
+                                <form action="/updatePegawai/{{$item->id}}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div>
@@ -288,10 +288,8 @@
                                           <textarea class="form-control" id="alamat" rows="4" name="alamat">{{ $item->alamat }}</textarea>
                                       </div>
                                       <div class="">
-                                          <label class="form-label" for="foto">Fotos:</label>
-                                          <input type="file" name="foto"
-                                              class="form-control @error('foto') is-invalid @enderror"
-                                              id="previewImage">
+                                          <label class="form-label" for="foto">Foto:</label>
+                                          <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"id="previewImage" >
                                       </div>
                                     </div>
                                   </div>
