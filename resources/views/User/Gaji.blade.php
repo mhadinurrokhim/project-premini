@@ -201,7 +201,7 @@
                                     <tr>
                                         <td>{{ $iteration + 1 }}</td>
                                         <td>{{ $gj->id_pegawai }}</td>
-                                        <td>{{ $gj->jumlah }}</td>
+                                        <td>Rp {{ $gj->jumlah }}</td>
                                         <td>{{ $gj->tanggal_pembayaran }}</td>
                                         <td class="d-flex">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $gj->id }}" style="margin-right: 10px;">

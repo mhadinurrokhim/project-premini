@@ -36,27 +36,31 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
-Route::middleware([AdminMiddleware::class])->group(function(){
+    Route::middleware([AdminMiddleware::class])->group(function(){
     Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
     Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
 
 });
 
 
-Route::middleware([UserMiddleware::class])->group(function(){
+    Route::middleware([UserMiddleware::class])->group(function(){
 
+
+    //PEGAWAI
     Route::get('/Dashboard', [PegawaiController::class, 'index'])->name('Dashboard');
     Route::post('/SimpanPegawai', [PegawaiController::class, 'store'])->name('SimpanPegawai');
     Route::delete('/dashboard/{id}', [PegawaiController::class, 'destroy']);
     Route::put('/updatePegawai/{id}', [PegawaiController::class, 'update'])->name('updatePegawai');
 
 
+    //ABSENSI
     Route::get('/Absensi', [AbsensiController::class, 'index'])->name('Absensi');
     Route::post('/storeAbsensi', [AbsensiController::class, 'store'])->name('storeAbsensi');
     Route::put('/updateAbsensi/{id}', [AbsensiController::class, 'update'])->name('updateAbsensi');
     Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
 
 
+    //GAJI
     Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
     Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
     Route::put('/updateGaji/{id}', [GajiController::class, 'update'])->name('updateGaji');
@@ -64,6 +68,12 @@ Route::middleware([UserMiddleware::class])->group(function(){
 
 
     Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
+    Route::post('/SimpanJabatan', [JabatanController::class, 'store'])->name('SimpanJabatan');
+    Route::put('/updateJabatan/{id}', [JabatanController::class, 'update'])->name('updateJabatan');
+    Route::delete('/deletejabatan/{id}', [JabatanController::class, 'destroy']);
+
+
+
     Route::get('/Table', [TableController::class, 'index'])->name('Table');
     Route::get('/User', [UserController::class, 'index'])->name('User');
     Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
             $table->string('jabatan');
-            $table->string('dekskripsi');
             $table->decimal('gaji');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }
