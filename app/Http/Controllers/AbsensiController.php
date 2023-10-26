@@ -15,7 +15,8 @@ class AbsensiController extends Controller
     public function index()
     {
         $absensi = Absensi::all();
-        return view('User.Absensi', compact('absensi'));
+        $user = auth()->user();
+        return view('User.Absensi', compact('absensi', 'user'));
     }
 
     public function Absen()
@@ -35,14 +36,14 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-        $this->validate($request,[
-            'id_pegawai'=>'required',
-            'tanggal'=>'required',
-            'keterangan'=>'required'
-        ],[
-            'id_pegawai.required'=>'pegawai id tidak boleh kosong',
-            'tanggal.required'=>'tanggal tidak boleh kosong',
-            'keterangan.required'=> 'keterngan tidak boleh kosong'
+        $this->validate($request, [
+            'id_pegawai' => 'required',
+            'tanggal' => 'required',
+            'keterangan' => 'required'
+        ], [
+            'id_pegawai.required' => 'NIP tidak boleh kosong!',
+            'tanggal.required' => 'tanggal tidak boleh kosong!',
+            'keterangan.required' => 'keterangan tidak boleh kosong!'
         ]);
 
 
@@ -52,7 +53,7 @@ class AbsensiController extends Controller
         $absensi->keterangan=$request->keterangan;
         $absensi->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success' , 'Data berhasil di tambahkan');
     }
 
     /**

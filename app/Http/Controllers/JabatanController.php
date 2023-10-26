@@ -15,7 +15,8 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = Jabatan::all();
-        return view('User.Jabatan',compact('jabatan'));
+        $user = auth()->user();
+        return view('User.Jabatan',compact('jabatan', 'user'));
     }
 
     /**
@@ -35,8 +36,8 @@ class JabatanController extends Controller
             'jabatan'=>'required',
             'gaji'=>'required'
         ],[
-            'jabatan.required'=>'jabatan tidak boleh kosong',
-            'gaji.required'=> 'gaji pembayaran tidak boleh kosong'
+            'jabatan.required'=>'jabatan tidak boleh kosong!',
+            'gaji.required'=> 'gaji tidak boleh kosong!'
         ]);
 
         $jabatan = new Jabatan;

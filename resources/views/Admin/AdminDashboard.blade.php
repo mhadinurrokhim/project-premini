@@ -45,65 +45,29 @@
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    AD
-                </a>
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                    ADMIN
-                </a>
-            </div>
+        <div class="logo">
+            <span class="simple-text">
+                ADMIN
+            </span>
+        </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
                     <li class="active">
                         <a href="{{ route('AdminDashboard') }}">
-                            <i class="now-ui-icons users_single-02"></i>
+                            <i class="now-ui-icons ui-1_simple-add"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
                         <li>
                             <a href="{{ route('Konfirmasi') }}">
-                                <i class="now-ui-icons users_single-02"></i>
+                                <i class="fas fa-check"></i>
                                 <p>konfrimasi</p>
                             </a>
                         </li>
                         <li>
-                        {{-- <a href="{{ route('Gaji') }}">
-                            <i class="now-ui-icons location_map-big"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Jabatan') }}">
-                            <i class="now-ui-icons ui-1_bell-53"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('User') }}">
-                            <i class="now-ui-icons users_single-02"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Table') }}">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Typography') }}">
-                            <i class="now-ui-icons text_caps-small"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li> --}}
                         <a href="/logout">
-                            <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                            <i class="now-ui-icons arrows-1_minimal-left"></i>
                             <p>Log out</p>
                         </a>
                     </li>

@@ -45,9 +45,11 @@
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
+            <div class="logo">
+                <span class="simple-text">
+                    {{$user->name}}
+                </span>
+            </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
             <li>
@@ -58,25 +60,25 @@
             </li>
             <li class="active">
                 <a href="{{ route('Absensi') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <i class="now-ui-icons ui-1_calendar-60"></i>
                     <p>ABSENSI</p>
                 </a>
             </li>
             <li>
                 <a href="{{ route('Gaji') }}">
-                    <i class="now-ui-icons location_map-big"></i>
+                    <i class="now-ui-icons business_money-coins"></i>
                     <p>GAJI</p>
                 </a>
             </li>
             <li>
                 <a href="{{ route('Jabatan') }}">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
+                    <i class="now-ui-icons design_bullet-list-67"></i>
                     <p>JABATAN</p>
                 </a>
             </li>
             <li>
                 <a href="/logout">
-                    <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                    <i class="now-ui-icons arrows-1_minimal-left"></i>
                     <p>Log out</p>
                 </a>
             </li>
@@ -103,34 +105,7 @@
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <ul class="navbar-nav">
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons users_single-02"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Account</span>
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -166,13 +141,13 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Data Abensis</h5>
+                            <h5 class="card-title">Data Absensi</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">ID Pegawai</th>
+                                        <th scope="col">NIP</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Aksi</th>
@@ -191,7 +166,7 @@
                                             <form action="/absensi/{{ $ab->id }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger" id="tambahButton">
+                                                <button type="submit" class="btn btn-danger" id="tambahButton" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
                                                     Hapus
                                                 </button>
                                             </form>
@@ -221,7 +196,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">ID Pegawai:</label>
+                                                    <label for="id_pegawai">NIP:</label>
                                                     <input type="number" value="{{ $absen->id_pegawai }}" class="form-control" id="id_pegawai" name="id_pegawai">
                                                 </div>
                                             </div>
@@ -268,14 +243,20 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">ID Pegawai:</label>
+                                                    <label for="id_pegawai">NIP:</label>
                                                     <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                    @error('id_pegawai')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="tanggal">Tanggal:</label>
                                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                                    @error('tanggal')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -283,6 +264,9 @@
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan:</label>
                                         <textarea class="form-control w-100" id="keterangan" rows="4" name="keterangan"></textarea>
+                                        @error('keterangan')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>

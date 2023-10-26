@@ -16,8 +16,9 @@ class PegawaiController extends Controller
     public function index()
     {
         $dashboard = pegawai::all();
+        $user = auth()->user();
         // dd(auth()->user());
-        return view('User.Dashboard', compact('dashboard'));
+        return view('User.Dashboard', compact('dashboard', 'user'));
     }
 
     /**
@@ -33,18 +34,26 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(),
+        $this->validate($request,
         [
-            'id_pegawai'=>'required',
-            'tanggal'=>'required',
-            'keterangan'=>'required'
-        ],[
-            'id_pegawai.required'=>'pegawai id tidak boleh kosong',
-            'tanggal.required'=>'tanggal tidak boleh kosong',
-            'keterangan.required'=> 'keterngan tidak boleh kosong'
+            'nama' => 'required',
+            'foto' => 'required',
+            'id_pegawai' => 'required|unique:pegawais,id_pegawai',
+            'jabatan' => 'required',
+            'gaji' => 'required',
+            'alamat' => 'required',
+            'no_tlp' => 'required',
+        ], [
+            'nama.required' => 'nama tidak boleh kosong!',
+            'foto.required' => 'foto tidak boleh kosong!',
+            'id_pegawai.required' => 'id pegawai tidak boleh kosong!',
+            'id_pegawai.unique' => 'id pegawai harus unik!',
+            'jabatan.required' => 'jabatan tidak boleh kosong!',
+            'gaji.required' => 'gaji tidak boleh kosong!',
+            'alamat.required' => 'alamat tidak boleh kosong!',
+            'no_tlp.required' => 'no tlp tidak boleh kosong!',
         ]);
 
-        try {
             $file = $request->file('foto');
             $fileName = Str::random(32)  . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/foto', $fileName);
@@ -58,9 +67,6 @@ class PegawaiController extends Controller
                 'alamat' => $request->alamat,
                 'no_tlp' => $request->no_tlp
             ]);
-        } catch (\Throwable $th) {
-            return redirect('/Dashboard')->with('error', 'Data harus di isi sesuai');
-        }
         return redirect('/Dashboard')->with('success', 'Data berhasil di tambahkan');
     }
 

@@ -45,45 +45,46 @@
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
-            <li class="active ">
-                <a href="{{ route('Dashboard') }}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>PEGAWAI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Absensi') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>ABSENSI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Gaji') }}">
-                    <i class="now-ui-icons location_map-big"></i>
-                    <p>GAJI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Jabatan') }}">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>JABATAN</p>
-                </a>
-            </li>
-            <li>
-                <a href="/logout">
-                    <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                    <p>Log out</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+            <div class="logo">
+                <span class="simple-text">
+                    {{$user->name}}
+                </span>
+            </div>
+                <div class="sidebar-wrapper" id="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="{{ route('Dashboard') }}">
+                                <i class="now-ui-icons users_single-02"></i>
+                                <p>PEGAWAI</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('Absensi') }}">
+                                <i class="now-ui-icons ui-1_calendar-60"></i>
+                                <p>ABSENSI</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('Gaji') }}">
+                                <i class="now-ui-icons business_money-coins"></i>
+                                <p>GAJI</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('Jabatan') }}">
+                                <i class="now-ui-icons design_bullet-list-67"></i>
+                                <p>JABATAN</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout">
+                                <i class="now-ui-icons arrows-1_minimal-left"></i>
+                                <p>Log out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         <div class="main-panel" id="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -123,7 +124,7 @@
                             </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="profil">
                                     <i class="now-ui-icons users_single-02"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Account</span>
@@ -204,7 +205,7 @@
                                                 <form action="/dashboard/{{ $db->id }}" method="post">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger" id="tambahButton"onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
+                                                    <button type="submit" class="btn btn-danger" id="tambahButton" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
                                                         Hapus
                                                     </button>
                                                 </div>
@@ -303,25 +304,33 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="nama">Nama:</label>
-                                                    <input type="text" class="form-control" id="nama"
-                                                        name="nama">
+                                                    <input type="text" class="form-control" id="nama" name="nama">
+                                                    @error('nama')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" class="form-control" id="id_pegawai"
-                                                        name="id_pegawai">
+                                                    <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                    @error('id_pegawai')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="jabatan">Jabatan:</label>
-                                                    <input type="text" class="form-control" id="jabatan"
-                                                        name="jabatan">
+                                                    <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                                    @error('jabatan')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="no_tlp">No Tlp:</label>
-                                                    <input type="number" class="form-control" id="no_tlp"
-                                                        name="no_tlp">
+                                                    <input type="number" class="form-control" id="no_tlp" name="no_tlp">
+                                                    @error('no_tlp')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -329,16 +338,25 @@
                                     <div class="form-group">
                                         <label for="gaji">Gaji:</label>
                                         <input type="number" class="form-control" id="gaji" name="gaji">
+                                        @error('gaji')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat">Alamat:</label>
                                         <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
+                                        @error('alamat')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="">
                                         <label class="form-label" for="foto">Fotos:</label>
                                         <input type="file" name="foto"
                                             class="form-control @error('foto') is-invalid @enderror"
                                             id="previewImage">
+                                            @error('foto')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>

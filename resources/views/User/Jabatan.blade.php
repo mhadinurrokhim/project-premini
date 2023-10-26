@@ -45,10 +45,11 @@
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-
+            <div class="logo">
+                <span class="simple-text">
+                    {{$user->name}}
+                </span>
+            </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
                     <li>
@@ -59,43 +60,25 @@
                     </li>
                     <li>
                         <a href="{{ route('Absensi') }}">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
+                            <i class="now-ui-icons ui-1_calendar-60"></i>
                             <p>ABSENSI</p>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('Gaji') }}">
-                            <i class="now-ui-icons location_map-big"></i>
+                            <i class="now-ui-icons business_money-coins"></i>
                             <p>GAJI</p>
                         </a>
                     </li>
                     <li class="active">
                         <a href="{{ route('Jabatan') }}">
-                            <i class="now-ui-icons ui-1_bell-53"></i>
+                            <i class="now-ui-icons design_bullet-list-67"></i>
                             <p>JABATAN</p>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="{{ route('User') }}">
-                            <i class="now-ui-icons users_single-02"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Table') }}">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Typography') }}">
-                            <i class="now-ui-icons text_caps-small"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li> --}}
                     <li>
                         <a href="/logout">
-                            <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                            <i class="now-ui-icons arrows-1_minimal-left"></i>
                             <p>Log out</p>
                         </a>
                     </li>
@@ -285,12 +268,18 @@
                                                 <div class="form-group">
                                                     <label for="jabatan">Jabatan:</label>
                                                     <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                                    @error('jabatan')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="gaji">Gaji:</label>
                                                     <input type="number" class="form-control" id="gaji" name="gaji">
+                                                    @error('gaji')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>

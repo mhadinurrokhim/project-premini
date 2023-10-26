@@ -14,7 +14,8 @@ class GajiController extends Controller
     public function index()
     {
         $gaji= Gaji::all();
-        return view('User.Gaji', compact('gaji'));
+        $user = auth()->user();
+        return view('User.Gaji', compact('gaji', 'user'));
     }
 
     /**
@@ -35,9 +36,9 @@ class GajiController extends Controller
             'jumlah'=>'required',
             'tanggal_pembayaran'=>'required'
         ],[
-            'id_pegawai.required'=>'id pegawai tidak boleh kosong',
-            'jumlah.required'=>'jumlah tidak boleh kosong',
-            'tanggal_pembayaran.required'=> 'tanggal pembayaran tidak boleh kosong'
+            'id_pegawai.required'=>'id pegawai tidak boleh kosong!',
+            'jumlah.required'=>'jumlah tidak boleh kosong!',
+            'tanggal_pembayaran.required'=> 'tanggal pembayaran tidak boleh kosong!'
         ]);
 
 
