@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\table;
-use Illuminate\Http\Request;
+use App\Models\Absensi;
+use App\Models\AdminCheck;
+use App\Http\Requests\StoreAdminCheckRequest;
+use App\Http\Requests\UpdateAdminCheckRequest;
 
-class TableController extends Controller
+class AdminCheckController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function Check()
     {
-        return view('User.Table');
+        $absensi = Absensi::all();
+        return view('Admin.Check',compact('absensi'));
     }
 
     /**
@@ -26,7 +29,7 @@ class TableController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAdminCheckRequest $request)
     {
         //
     }
@@ -34,7 +37,7 @@ class TableController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(table $table)
+    public function show(AdminCheck $adminCheck)
     {
         //
     }
@@ -42,7 +45,7 @@ class TableController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(table $table)
+    public function edit(AdminCheck $adminCheck)
     {
         //
     }
@@ -50,7 +53,7 @@ class TableController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, table $table)
+    public function update(UpdateAdminCheckRequest $request, AdminCheck $adminCheck)
     {
         //
     }
@@ -58,7 +61,7 @@ class TableController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(table $table)
+    public function destroy(AdminCheck $adminCheck)
     {
         //
     }

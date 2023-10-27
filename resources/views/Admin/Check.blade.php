@@ -45,27 +45,32 @@
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
-        <div class="logo">
-            <span class="simple-text">
-                ADMIN
-            </span>
-        </div>
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                    AD
+                </a>
+                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                    ADMIN
+                </a>
+            </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
-                        <a href="{{ route('AdminDashboard') }}">
-                            <i class="now-ui-icons ui-1_simple-add"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
                         <li>
                             <a href="{{ route('Konfirmasi') }}">
                                 <i class="fas fa-check"></i>
-                                <p>konfrimasi</p>
+                                <p>Konfirmasi</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
+                            <a href="{{ route('Check') }}">
+                                <i class="now-ui-icons ui-1_bell-53"></i>
+                                <p>Check Absensi</p>
+                            </a>
+                        </li>
+                    <li>
                         <a href="/logout">
                             <i class="now-ui-icons arrows-1_minimal-left"></i>
                             <p>Log out</p>
@@ -86,7 +91,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo">DASHBOARD</a>
+                        <a class="navbar-brand" href="#pablo">Pegawai Absensi</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +119,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
-                                    {{-- <i class="now-ui-icons users_single-02"></i> --}}
+                                    <i class="now-ui-icons users_single-02"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Account</span>
                                     </p>
@@ -153,77 +158,39 @@
                 <div class="panel-header panel-header-sm">
                 </div>
                 <br><br>
-                <h1>Dashboard</h1>
 
-                {{-- <div class="container">
+                <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Data Abensis</h5>
-                            <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
+                            <h5 class="card-title">PEGAWAI ABSENSI</h5>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Id pegawai</th>
-                                        <th scope="col">Tanggal</th>
-                                        <th scope="col">Keterangan</th>
-                                        <th scope="col">Aksi</th>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                     $no = 1;
                                     @endphp
-                                     @foreach ($data as $absensi)
+                                        @foreach ($absensi as $no => $ab)
                                     <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $absensi->id_pegawai }}</td>
-                                        <td>{{ $absensi->tanggal }}</td>
-                                        <td>{{ $absensi->keterangan }}</td>
-                                        <td>
-                                        <button type="button" class="btn btn-primary" id="editModal">Edit</button>
-                                        <button type="button" class="btn btn-danger">Hapus</button>
-                                      </td>
+                                        <td>{{  ++$no }}</td>
+                                        <td>{{ $ab->id_pegawai }}</td>
+                                        <td>{{ $ab->tanggal }}</td>
+                                        <td>{{ $ab->keterangan }}</td>
+                                        <td class="d-flex">
+                                        </td>
                                     </tr>
                                     @endforeach
-                                  </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
-                  </div> --}}
-                  <!-- Modal Tambah -->
-                  <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <h5 class="modal-title" id="tambahModalLabel">Tambah Data Absensi</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                  <form >
-                                      <div class="form-group">
-                                          <label for="id_pegawai">ID Pegawai:</label>
-                                          <input type="text" class="form-control" id="id_pegawai">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="tanggal">Tanggal:</label>
-                                          <input type="date" class="form-control" id="tanggal">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="keterangan">Keterangan:</label>
-                                          <textarea class="form-control" id="keterangan" rows="4" name="keterangan"
-                                          class="form-control @error('alamat') is-invalid @enderror"
-                                          id="keterangan"></textarea>
-                                      </div>
-                                  </form>
-                              </div>
-                              <div class="modal-footer">
-                                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                  <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                </div>
                 <script>
                     // Handle button click to show modal
                     document.getElementById("tambahButton").addEventListener("click", function () {

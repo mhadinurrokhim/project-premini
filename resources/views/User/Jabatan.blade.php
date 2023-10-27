@@ -50,41 +50,41 @@
                     {{$user->name}}
                 </span>
             </div>
-            <div class="sidebar-wrapper" id="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="{{ route('Dashboard') }}">
-                            <i class="now-ui-icons users_single-02"></i>
-                            <p>PEGAWAI</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Absensi') }}">
-                            <i class="now-ui-icons ui-1_calendar-60"></i>
-                            <p>ABSENSI</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('Gaji') }}">
-                            <i class="now-ui-icons business_money-coins"></i>
-                            <p>GAJI</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="{{ route('Jabatan') }}">
-                            <i class="now-ui-icons design_bullet-list-67"></i>
-                            <p>JABATAN</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout">
-                            <i class="now-ui-icons arrows-1_minimal-left"></i>
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav">
+            <li>
+                <a href="{{ route('Dashboard') }}">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>PEGAWAI</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('Absensi') }}">
+                    <i class="now-ui-icons ui-1_calendar-60"></i>
+                    <p>ABSENSI</p>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('Gaji') }}">
+                    <i class="now-ui-icons business_money-coins"></i>
+                    <p>GAJI</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="{{ route('Jabatan') }}">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>JABATAN</p>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <i class="now-ui-icons arrows-1_minimal-left"></i>
+                    <p>Log out</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
         <div class="main-panel" id="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -103,10 +103,7 @@
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
-                        <span class="navbar-toggler-bar navbar-kebab"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form>
+                        <span
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -142,7 +139,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">JABATAN</h5>
+                            <h5 class="card-title">GAJI</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
@@ -152,8 +149,7 @@
                                         <th scope="col">Gaji</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
-                                </thead>
-                                <tbody>
+
                                     @php
                                     $no = 1;
                                     @endphp
@@ -176,98 +172,98 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                </tbody>
+                                </thead>
                             </table>
                         </div>
                     </div>
                 </div>
 
+ <!-- Modal Edit -->
+ @foreach ($jabatan as $jbt)
+ <div class="modal fade" id="exampleModal{{ $jbt->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                 <form action="/updateJabatan/{{$jbt->id}}" enctype="multipart/form-data" method="POST">
+                     @csrf
+                     @method('PUT')
+                     <div>
+                         <div class="container">
+                             <div class="row">
+                                 <div class="col-6">
+                                     <div class="form-group">
+                                         <label for="jabatan">Jabatan:</label>
+                                         <input type="text" value="{{ $jbt->jabatan }}" class="form-control" id="jabatan" name="jabatan">
+                                     </div>
+                                 </div>
+                                 <div class="col-6">
+                                     <div class="form-group">
+                                         <label for="gaji">Gaji:</label>
+                                         <input type="number" value="{{ $jbt->gaji }}" class="form-control" id="gaji" name="gaji">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </form>
+ </div>
+  @endforeach
 
-                    <!-- Modal Edit -->
-                    @foreach ($jabatan as $jbt)
-                    <div class="modal fade" id="exampleModal{{ $jbt->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                              <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="/updateJabatan/{{$jbt->id}}" enctype="multipart/form-data" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <div>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="jabatan">Jabatan:</label>
-                                                            <input type="text" value="{{ $jbt->jabatan }}" class="form-control" id="jabatan" name="jabatan">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="gaji">Gaji:</label>
-                                                            <input type="number" value="{{ $jbt->gaji }}" class="form-control" id="gaji" name="gaji">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                     @endforeach
+<!-- Modal Tambah-->
+<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <form action="{{ route('SimpanJabatan') }}" method="post" enctype="multipart/form-data">
+             @csrf
+             <div class="modal-body">
+                 <div class="container">
+                     <div class="row">
+                         <div class="col-6">
+                             <div class="form-group">
+                                 <label for="jabatan">Jabatan:</label>
+                                 <input type="text" class="form-control" id="jabatan" name="jabatan">
+                                 @error('jabatan')
+                                     <p class="text-danger">{{ $message }}</p>
+                                 @enderror
+                             </div>
+                         </div>
+                         <div class="col-6">
+                             <div class="form-group">
+                                 <label for="gaji">Gaji:</label>
+                                 <input type="number" class="form-control" id="gaji" name="gaji">
+                                 @error('gaji')
+                                     <p class="text-danger">{{ $message }}</p>
+                                 @enderror
+                             </div>
+                         </div>
+                     </div>
+                         <div class="modal-footer">
+                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                             <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                         </div>
+                     </div>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
 
-                <!-- Modal Tambah-->
-                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form action="{{ route('SimpanJabatan') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="jabatan">Jabatan:</label>
-                                                    <input type="text" class="form-control" id="jabatan" name="jabatan">
-                                                    @error('jabatan')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="gaji">Gaji:</label>
-                                                    <input type="number" class="form-control" id="gaji" name="gaji">
-                                                    @error('gaji')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

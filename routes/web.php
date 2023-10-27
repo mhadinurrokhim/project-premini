@@ -4,22 +4,23 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Password;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TableController;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JabatanController;
-use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AdminCheckController;
+use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\TypograhpyController;
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -37,8 +38,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
     Route::middleware([AdminMiddleware::class])->group(function(){
-    Route::get('/AdminDashboard', [AdminController::class,'index'])->name('AdminDashboard');
     Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
+    Route::get('/Check', [AdminCheckController::class, 'Check'])->name('Check');
 
 });
 
@@ -71,14 +72,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::post('/SimpanJabatan', [JabatanController::class, 'store'])->name('SimpanJabatan');
     Route::put('/updateJabatan/{id}', [JabatanController::class, 'update'])->name('updateJabatan');
     Route::delete('/deletejabatan/{id}', [JabatanController::class, 'destroy']);
-
-
-
-    Route::get('/Table', [TableController::class, 'index'])->name('Table');
-    Route::get('/User', [UserController::class, 'index'])->name('User');
-    Route::get('/Typography',[TypograhpyController::class, 'index'])->name('Typography');
-
-
 });
 
 
