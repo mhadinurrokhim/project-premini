@@ -42,7 +42,7 @@ class PegawaiController extends Controller
             'jabatan' => 'required',
             'gaji' => 'required',
             'alamat' => 'required',
-            'no_tlp' => 'required',
+            'no_tlp' => 'required|numeric|gt:0',
         ], [
             'nama.required' => 'nama tidak boleh kosong!',
             'foto.required' => 'foto tidak boleh kosong!',
@@ -52,6 +52,8 @@ class PegawaiController extends Controller
             'gaji.required' => 'gaji tidak boleh kosong!',
             'alamat.required' => 'alamat tidak boleh kosong!',
             'no_tlp.required' => 'no tlp tidak boleh kosong!',
+            'no_tlp.numeric' => 'no tlp harus berupa angka!',
+            'no_tlp.gt' => 'no tlp tidak valid !',
         ]);
 
             $file = $request->file('foto');
