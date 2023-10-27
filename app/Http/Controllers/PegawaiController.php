@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\Pegawai;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,10 +16,11 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $dashboard = pegawai::all();
+        $jabatans = Jabatan::all();
+        $dashboard = pegawai::with('jabatan')->get();
         $user = auth()->user();
         // dd(auth()->user());
-        return view('User.Dashboard', compact('dashboard', 'user'));
+        return view('User.Dashboard', compact('dashboard', 'user','jabatans'));
     }
 
     /**
@@ -26,7 +28,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('User.Dashboard');
+        $dashboard = Jabatan::all();
+        $dashboard = pegawai::with('jabatans','jabatan')->get();
+        return view('User.Dashboard', compact('dashboard'));
     }
 
     /**
@@ -39,7 +43,7 @@ class PegawaiController extends Controller
             'nama' => 'required',
             'foto' => 'required',
             'id_pegawai' => 'required|unique:pegawais,id_pegawai',
-            'jabatan' => 'required',
+            'id_jabatan' => 'required',
             'gaji' => 'required',
             'alamat' => 'required',
             'no_tlp' => 'required|numeric|gt:0',
@@ -48,7 +52,7 @@ class PegawaiController extends Controller
             'foto.required' => 'foto tidak boleh kosong!',
             'id_pegawai.required' => 'id pegawai tidak boleh kosong!',
             'id_pegawai.unique' => 'id pegawai harus unik!',
-            'jabatan.required' => 'jabatan tidak boleh kosong!',
+            'id_jabatan.required' => 'jabatan tidak boleh kosong!',
             'gaji.required' => 'gaji tidak boleh kosong!',
             'alamat.required' => 'alamat tidak boleh kosong!',
             'no_tlp.required' => 'no tlp tidak boleh kosong!',
@@ -64,7 +68,7 @@ class PegawaiController extends Controller
                 'nama' => $request->nama,
                 'foto' => $fileName,
                 'id_pegawai' => $request->id_pegawai,
-                'jabatan' => $request->jabatan,
+                'id_jabatan' => $request->id_jabatan,
                 'gaji' => $request->gaji,
                 'alamat' => $request->alamat,
                 'no_tlp' => $request->no_tlp

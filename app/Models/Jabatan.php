@@ -12,4 +12,8 @@ class Jabatan extends Model
         'jabatan',
         'gaji'
     ];
+    public function pegawais()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }

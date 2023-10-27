@@ -139,7 +139,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">GAJI</h5>
+                            <h5 class="card-title">JABATAN</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>

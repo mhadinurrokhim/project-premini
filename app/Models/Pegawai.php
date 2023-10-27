@@ -12,13 +12,17 @@ class Pegawai extends Model
         'nama',
         'foto',
         'id_pegawai',
-        'jabatan',
+        'id_jabatan',
         'gaji',
         'alamat',
         'no_tlp'
     ];
-    public function konfirmasi()
+    public function jabatan()
     {
-        return $this->hasMany(Konfirmasi::class, 'id_pegawai', 'id_pegawai');
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
+    public function absensi()
+    {
+        return $this->belongsTo(Absensi::class, 'id_pegawai');
     }
 }

@@ -50,7 +50,6 @@
     -->
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    AD
                 </a>
                 <a href="http://www.creative-tim.com" class="simple-text logo-normal">
                     ADMIN
@@ -101,14 +100,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <form>
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                    </div>
-                                </div>
-                            </div>
+
                         </form>
                         <ul class="navbar-nav">
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -116,14 +108,6 @@
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons users_single-02"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Account</span>
-                                    </p>
-                                </a>
                             </li>
                         </ul>
                     </div>
@@ -182,13 +166,12 @@
                                         <img src="{{ asset('storage/foto/' . $db->foto) }}" alt="" srcset="" width="70" height="110">
                                     </td>
                                     <td>{{ $db->id_pegawai }}</td>
+                                    <td>{{ $db->jabatan->jabatan }}</td>
                                     <td>{{ $db->alamat }}</td>
                                     <td>{{ $db->no_tlp }}</td>
                                     <td>{{ 'Rp ' . number_format($db->gaji, 0, ',', '.') }}</td>
-                                    <td>{{ $db->jabatan }}</td>
                                     <td>
                                         <div class="d-flex">
-                                                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $db->id }}" style="margin-right: 10px;">terima</button> --}}
                                             </div>
                                         </form>
                                     </tr>

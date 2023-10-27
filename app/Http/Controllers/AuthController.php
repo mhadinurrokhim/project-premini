@@ -83,7 +83,7 @@ class AuthController extends Controller
                 return redirect('/login')->with('error', 'Email atau password salah');
 
             }else if(auth()->user()->role == 'admin'){
-                return redirect('/AdminDashboard')->with('success', 'Berhasil login');
+                return redirect('/Konfirmasi')->with('success', 'Berhasil login');
                 return redirect('/Konfirmasi')->with('error', 'Email atau password salah');
             }
         }

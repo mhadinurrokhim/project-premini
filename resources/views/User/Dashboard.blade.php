@@ -165,7 +165,7 @@
                                                     srcset="" width="70" height="110">
                                             </td>
                                             <td>{{ $db->id_pegawai }}</td>
-                                            <td>{{ $db->jabatan }}</td>
+                                            <td>{{ $db->jabatan->jabatan }}</td>
                                             <td>{{ $db->alamat }}</td>
                                             <td>{{ $db->no_tlp }}</td>
                                             <td>{{ 'Rp ' . number_format($db->gaji, 0, ',', '.') }}</td>
@@ -222,9 +222,8 @@
                                               </div>
                                               <div class="col-6">
                                                   <div class="form-group">
-                                                      <label for="jabatan">Jabatan:</label>
-                                                      <input type="text" value="{{ $item->jabatan }}" class="form-control" id="jabatan"
-                                                          name="jabatan" required>
+                                                    <label for="id_jabatan">Jabatan:</label>
+                                                    <input type="text" value="{{ $item->jabatan->jabatan }}" class="form-control" id="id_jabatan" name="id_jabatan" readonly>
                                                   </div>
                                                   <div class="form-group">
                                                       <label for="no_tlp">No Tlp:</label>
@@ -291,11 +290,15 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="jabatan">Jabatan:</label>
-                                                    <input type="text" class="form-control" id="jabatan" name="jabatan">
-                                                    @error('jabatan')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
+                                                    <label for="id_jabatan" class="form-label">Jabatan</label>
+                                                    <select class="form-select" name="id_jabatan" value=" {{ old ('jabatan') }}" aria-label="Default control example" id="id_jabatan">
+                                                        @foreach ($jabatans as $jabatan )
+                                                        <option value="{{ $jabatan->id }}">{{ $jabatan->jabatan  }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('id_jabatan')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="no_tlp">No Tlp:</label>
@@ -334,9 +337,10 @@
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
                                         <button type="submit" class="btn btn-outline-warning">Simpan</button>
                                     </div>
+                                </form>
                             </div>
                         </div>
-                        </form>
+
                     </div>
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
