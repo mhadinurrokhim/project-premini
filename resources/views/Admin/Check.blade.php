@@ -60,7 +60,7 @@
                         <li>
                             <a href="{{ route('Konfirmasi') }}">
                                 <i class="fas fa-check"></i>
-                                <p>Konfirmasi</p>
+                                <p>DATA PEGAWAI</p>
                             </a>
                         </li>
                         <li class="active">

@@ -19,7 +19,6 @@ class PegawaiController extends Controller
         $jabatans = Jabatan::all();
         $dashboard = pegawai::with('jabatan')->get();
         $user = auth()->user();
-        // dd(auth()->user());
         return view('User.Dashboard', compact('dashboard', 'user','jabatans'));
     }
 
@@ -34,7 +33,7 @@ class PegawaiController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
      */
     public function store(Request $request)
     {

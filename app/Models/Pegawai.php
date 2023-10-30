@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Absensi;
+use App\Models\Jabatan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pegawai extends Model
 {
@@ -13,16 +17,16 @@ class Pegawai extends Model
         'foto',
         'id_pegawai',
         'id_jabatan',
-        'gaji',
+        'id_gaji',
         'alamat',
         'no_tlp'
     ];
-    public function jabatan()
+    public function jabatan(): BelongsTo
     {
-        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+        return $this->belongsTo(Jabatan::class, 'id_jabatan','id_gaji');
     }
-    public function absensi()
+    public function absensi(): HasMany
     {
-        return $this->belongsTo(Absensi::class, 'id_pegawai');
+        return $this->hasMany(Absensi::class);
     }
 }

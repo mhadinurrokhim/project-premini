@@ -36,9 +36,18 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required',
+        ], [
+            'name.required' => 'Nama harus diisi.',
+            'email.required' => 'Alamat email harus diisi.',
+            'email.email' => 'Format alamat email tidak valid.',
+            'email.unique' => 'Alamat email sudah terdaftar. Gunakan alamat email lain.',
+            'password.required' => 'Kata sandi harus diisi.',
+            'password.min' => 'Kata sandi minimal harus terdiri dari 8 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password_confirmation.required' => 'Konfirmasi kata sandi harus diisi.',
         ]);
         if (User::where('email', $request->email)->exists()) {
-            return redirect('/register')->with('error', 'Alamat email sudah terdaftar. Gunakan alamat email lain.');
+            return redirect('/login')->with('error', 'Alamat email sudah terdaftar. Gunakan alamat email lain.');
         }
         $data = [
             'name' => $request->name,
@@ -52,7 +61,7 @@ class AuthController extends Controller
 
         event(new Registered($user));
         Auth::login($user);
-        return redirect('/register')->with('success', 'cek gmail untuk verifikasi email');
+        return redirect('/login')->with('success', 'cek gmail untuk verifikasi email');
     }
 
     public function proseslogin(Request $request)
@@ -63,9 +72,9 @@ class AuthController extends Controller
         ];
 
         $customMessages = [
-            'email.required' => 'The email address is required.',
-            'email.email' => 'Please provide a valid email address.',
-            'password.required' => 'The password is required.',
+            'email.required' => 'email harus diisi.',
+            'email.email' => 'email sudah ada.',
+            'password.required' => 'passowrd harus diisi.',
         ];
 
 

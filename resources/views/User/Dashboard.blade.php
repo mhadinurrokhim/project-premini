@@ -267,8 +267,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('SimpanPegawai') }}" method="post"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('SimpanPegawai') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="container">
                                         <div class="row">
@@ -340,7 +339,6 @@
                                 </form>
                             </div>
                         </div>
-
                     </div>
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

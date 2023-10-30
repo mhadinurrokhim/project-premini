@@ -213,6 +213,7 @@
                                             class="form-control @error('keterangan') is-invalid @enderror"
                                             id="keterangan">{{ $absen->keterangan }}</textarea>
                                         </div>
+                                        @dump($absen->pegawais)
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
