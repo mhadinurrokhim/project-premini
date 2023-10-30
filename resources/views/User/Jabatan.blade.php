@@ -157,7 +157,7 @@
                                     <tr>
                                         <td>{{$iteration + 1 }}</td>
                                         <td>{{ $jb->jabatan }}</td>
-                                        <td>Rp {{ $jb->gaji }}</td>
+                                        <td>Rp {{ number_format($jb->gaji, 0, ',', '.') }}</td>
                                         <td class="d-flex">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $jb->id }}" style="margin-right: 10px;">
                                                 Edit

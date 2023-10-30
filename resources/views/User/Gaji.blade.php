@@ -103,7 +103,7 @@
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
-                        <span 
+                        <span
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -155,7 +155,7 @@
                                     <tr>
                                         <td>{{ $iteration + 1 }}</td>
                                         <td>{{ $gj->id_pegawai }}</td>
-                                        <td>Rp {{ $gj->jumlah }}</td>
+                                        <td>Rp {{ number_format($gj->jumlah, 0, ',', '.') }}</td>
                                         <td>{{ $gj->tanggal_pembayaran }}</td>
                                         <td class="d-flex">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $gj->id }}" style="margin-right: 10px;">
