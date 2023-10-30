@@ -17,13 +17,13 @@ class Pegawai extends Model
         'foto',
         'id_pegawai',
         'id_jabatan',
-        'id_gaji',
+        'gaji',
         'alamat',
         'no_tlp'
     ];
     public function jabatan(): BelongsTo
     {
-        return $this->belongsTo(Jabatan::class, 'id_jabatan','id_gaji');
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
     public function absensi(): HasMany
     {
