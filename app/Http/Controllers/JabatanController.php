@@ -34,10 +34,11 @@ class JabatanController extends Controller
     {
         $this->validate($request,[
             'jabatan'=>'required',
-            'gaji'=>'required'
+            'gaji'=>'required|gte:0'
         ],[
             'jabatan.required'=>'jabatan tidak boleh kosong!',
-            'gaji.required'=> 'gaji tidak boleh kosong!'
+            'gaji.required'=> 'gaji tidak boleh kosong!',
+            'gaji.gte' => 'gaji tidak valid!',
         ]);
 
         $jabatan = new Jabatan;
@@ -45,7 +46,7 @@ class JabatanController extends Controller
         $jabatan->gaji=$request->gaji;
         $jabatan->save();
 
-        return redirect()->back();
+        return redirect('/Jabatan')->with('success', 'Data berhasil di tambahkan');
     }
 
     /**
@@ -85,6 +86,7 @@ class JabatanController extends Controller
     {
         $jabatan = Jabatan::find($id);
         $jabatan->delete();
-        return back()->with('Success', 'Jabatan deleted successfully');
+
+        return redirect()->route('Jabatan')->with('success', 'Pegawai deleted successfully');
     }
 }

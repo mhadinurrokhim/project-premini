@@ -31,14 +31,17 @@ class GajiController extends Controller
      */
     public function store(StoregajiRequest $request)
     {
-        $this->validate($request,[
-            'id_pegawai'=>'required',
+        $this->validate($request,
+        [
+            'id_pegawai'=>'required|gt:0|unique:gajis,id_pegawai',
             'jumlah'=>'required',
             'tanggal_pembayaran'=>'required'
         ],[
-            'id_pegawai.required'=>'id pegawai tidak boleh kosong!',
+            'id_pegawai.required'=>'NIP tidak boleh kosong!',
+            'id_pegawai.gt'=>'NIP tidak valid!',
+            'id_pegawai.unique' => 'NIP sudah digunakan!',
             'jumlah.required'=>'jumlah tidak boleh kosong!',
-            'tanggal_pembayaran.required'=> 'tanggal pembayaran tidak boleh kosong!'
+            'tanggal_pembayaran.required'=> 'tanggal tidak boleh kosong!'
         ]);
 
 
@@ -48,7 +51,7 @@ class GajiController extends Controller
         $gaji->tanggal_pembayaran=$request->tanggal_pembayaran;
         $gaji->save();
 
-        return redirect()->back();
+        return redirect('/Gaji')->with('success', 'Data berhasil di tambahkan');
     }
 
     /**
@@ -89,6 +92,7 @@ class GajiController extends Controller
     {
         $gaji = gaji::find($id);
         $gaji->delete();
-        return back()->with('Auccess', 'Gaji deleted successfully');
+
+        return redirect()->route('Gaji')->with('success', 'Pegawai deleted successfully');
     }
 }

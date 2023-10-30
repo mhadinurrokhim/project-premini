@@ -37,13 +37,15 @@ class AbsensiController extends Controller
     public function store(StoreAbsensiRequest $request)
     {
         $this->validate($request, [
-            'id_pegawai' => 'required',
+            'id_pegawai' => 'required|gt:0',
             'tanggal' => 'required',
-            'keterangan' => 'required'
+            'keterangan' => 'required|max:100'
         ], [
             'id_pegawai.required' => 'NIP tidak boleh kosong!',
+            'id_pegawai.gt' => 'NIP tidak valid !',
             'tanggal.required' => 'tanggal tidak boleh kosong!',
-            'keterangan.required' => 'keterangan tidak boleh kosong!'
+            'keterangan.required' => 'keterangan tidak boleh kosong!',
+            'keterangan.max' => 'keterangan tidak boleh melebihi 100 karakter!',
         ]);
 
 

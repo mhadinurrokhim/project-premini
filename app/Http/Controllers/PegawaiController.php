@@ -41,22 +41,25 @@ class PegawaiController extends Controller
         [
             'nama' => 'required',
             'foto' => 'required',
-            'id_pegawai' => 'required|unique:pegawais,id_pegawai',
+            'id_pegawai' => 'required|gt:0||unique:pegawais,id_pegawai',
             'id_jabatan' => 'required',
             'gaji' => 'required',
-            'alamat' => 'required',
-            'no_tlp' => 'required|numeric|gt:0',
+            'alamat' => 'required|max:100',
+            'no_tlp' => 'required|numeric|gt:0|digits_between:12,15',
         ], [
             'nama.required' => 'nama tidak boleh kosong!',
             'foto.required' => 'foto tidak boleh kosong!',
-            'id_pegawai.required' => 'id pegawai tidak boleh kosong!',
-            'id_pegawai.unique' => 'id pegawai harus unik!',
+            'id_pegawai.required' => 'NIP tidak boleh kosong!',
+            'id_pegawai.gt' => 'NIP tidak valid !',
+            'id_pegawai.unique' => 'NIP sudah digunakan!',
             'id_jabatan.required' => 'jabatan tidak boleh kosong!',
             'gaji.required' => 'gaji tidak boleh kosong!',
             'alamat.required' => 'alamat tidak boleh kosong!',
+            'alamat.max' => 'alamat tidak boleh melebihi 100 karakter!',
             'no_tlp.required' => 'no tlp tidak boleh kosong!',
             'no_tlp.numeric' => 'no tlp harus berupa angka!',
             'no_tlp.gt' => 'no tlp tidak valid !',
+            'no_tlp.digits_between' => 'no tlp harus memiliki panjang antara 12 hingga 15 digit!',
         ]);
 
             $file = $request->file('foto');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('foto')->nullable();
             $table->string('id_pegawai');
-            $table->foreignId('id_jabatan');
+            $table->foreignId('id_jabatan');    
             $table->decimal('gaji', 10, 2);
             $table->string('alamat');
             $table->string('no_tlp');
