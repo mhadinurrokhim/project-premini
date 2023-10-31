@@ -156,7 +156,6 @@
                                         <th>Alamat</th>
                                         <th>No Tlp</th>
                                         <th>Gaji</th>
-                                        {{-- <th>Aksi</th> --}}
                                 </tr>
                                 @foreach ($dashboard as $no => $db)
                                 <tr>
@@ -171,7 +170,7 @@
                                     <td>{{ $db->no_tlp }}</td>
                                     <td>{{ 'Rp ' . number_format($db->gaji, 0, ',', '.') }}</td>
                                     <td>
-                                        <div class="d-flex">
+                                        <div class="">
                                             </div>
                                         </form>
                                     </tr>

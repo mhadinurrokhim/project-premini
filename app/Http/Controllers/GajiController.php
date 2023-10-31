@@ -13,7 +13,7 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $gaji= Gaji::all();
+        $gaji = Gaji::all();
         $user = auth()->user();
         return view('User.Gaji', compact('gaji', 'user'));
     }
@@ -33,22 +33,22 @@ class GajiController extends Controller
     {
         $this->validate($request,
         [
-            'id_pegawai'=>'required|gt:0|unique:gajis,id_pegawai',
-            'jumlah'=>'required',
+            'nip'=>'required|gt:0|unique:gajis,nip',
+            'gaji'=>'required',
             'tanggal_pembayaran'=>'required'
         ],[
-            'id_pegawai.required'=>'NIP tidak boleh kosong!',
-            'id_pegawai.gt'=>'NIP tidak valid!',
-            'id_pegawai.unique' => 'NIP sudah digunakan!',
-            'jumlah.required'=>'jumlah tidak boleh kosong!',
+            'nip.required'=>'NIP tidak boleh kosong!',
+            'nip.gt'=>'NIP tidak valid!',
+            'nip.unique' => 'NIP sudah digunakan!',
+            'gaji.required'=>'gaji tidak boleh kosong!',
             'tanggal_pembayaran.required'=> 'tanggal tidak boleh kosong!'
         ]);
 
 
         $gaji = new gaji;
-        $gaji->id_pegawai = $request->id_pegawai;
-        $gaji->jumlah=$request->jumlah;
-        $gaji->tanggal_pembayaran=$request->tanggal_pembayaran;
+        $gaji->nip = $request->nip;
+        $gaji->gaji = $request->gaji;
+        $gaji->tanggal_pembayaran = $request->tanggal_pembayaran;
         $gaji->save();
 
         return redirect('/Gaji')->with('success', 'Data berhasil di tambahkan');
@@ -73,12 +73,12 @@ class GajiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdategajiRequest $request, gaji $gaji, $id )
+    public function update(UpdategajiRequest $request, gaji $gaji, $id)
     {
         $gaji = gaji::find($id);
         $gaji->update([
-            'id_pegawai' => $request->input('id_pegawai'),
-            'jumlah' => $request -> input('jumlah'),
+            'nip' => $request->input('nip'),
+            'gaji' => $request->input('gaji'),
             'tanggal_pembayaran' => $request->input('tanggal_pembayaran')
         ]);
 
@@ -88,7 +88,7 @@ class GajiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(gaji $gaji ,$id)
+    public function destroy(gaji $gaji, $id)
     {
         $gaji = gaji::find($id);
         $gaji->delete();

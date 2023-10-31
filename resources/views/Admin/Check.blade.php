@@ -165,7 +165,7 @@
                                         <td>{{ $ab->id_pegawai }}</td>
                                         <td>{{ $ab->tanggal }}</td>
                                         <td>{{ $ab->keterangan }}</td>
-                                        <td class="d-flex">
+                                        <td class="">
                                         </td>
                                     </tr>
                                     @endforeach
