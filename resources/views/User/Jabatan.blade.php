@@ -272,6 +272,13 @@
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
                     <script>
+                        $(document).ready(function () {
+                            @if (count($errors) > 0)
+                                $('#tambahModal').modal('show'); // Show the modal if there are validation errors
+                            @endif
+                        });
+                     </script>
+                    <script>
                         // Handle button click to show modal
                         document.getElementById("tambahButton").addEventListener("click", function() {
                             $('#tambahModal').modal('show');

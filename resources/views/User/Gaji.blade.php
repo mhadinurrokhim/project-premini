@@ -146,7 +146,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">NIP</th>
-                                        <th scope="col">Jumlah</th>
+                                        <th scope="col">gaji</th>
                                         <th scope="col">Tanggal Gajian</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -154,8 +154,8 @@
                                     @foreach($gaji as $iteration => $gj)
                                     <tr>
                                         <td>{{ $iteration + 1 }}</td>
-                                        <td>{{ $gj->id_pegawai }}</td>
-                                        <td>Rp {{ number_format($gj->jumlah, 0, ',', '.') }}</td>
+                                        <td>{{ $gj->nip }}</td>
+                                        <td>Rp {{ number_format($gj->gaji, 0, ',', '.') }}</td>
                                         <td>{{ $gj->tanggal_pembayaran }}</td>
                                         <td class="d-flex">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $gj->id }}" style="margin-right: 10px;">
@@ -195,12 +195,12 @@
                                         <div class="row">
                                             <div class="coll-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" value="{{ $ga->id_pegawai }}" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                    <label for="nip">NIP:</label>
+                                                    <input type="number" value="{{ $ga->nip }}" class="form-control" id="nip" name="nip">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="jumlah">Jumlah:</label>
-                                                    <input type="number" value="{{ $ga->jumlah }}" class="form-control" id="jumlah" name="jumlah">
+                                                    <label for="gaji">gaji:</label>
+                                                    <input type="number" value="{{ $ga->gaji }}" class="form-control" id="gaji" name="gaji">
                                                 </div>
                                             </div>
                                         </div>
@@ -235,18 +235,18 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
-                                                    @error('id_pegawai')
+                                                    <label for="nip">NIP:</label>
+                                                    <input type="number" class="form-control" id="nip" name="nip">
+                                                    @error('nip')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="jumlah">Jumlah:</label>
-                                                    <input type="number" class="form-control" id="jumlah" name="jumlah">
-                                                    @error('jumlah')
+                                                    <label for="gaji">gaji:</label>
+                                                    <input type="number" class="form-control" id="gaji" name="gaji">
+                                                    @error('gaji')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -277,6 +277,15 @@
                     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                    <script>
+                        $(document).ready(function () {
+                            @if (count($errors) > 0)
+                                $('#tambahModal').modal('show'); // Show the modal if there are validation errors
+                            @endif
+                        });
+                     </script>
+
 
                     <script>
                         // Handle button click to show modal

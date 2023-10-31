@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pegawai');
+            $table->foreignId('id_nip');
             $table->date('tanggal');
             $table->string('keterangan');
             $table->timestamps();

@@ -164,7 +164,7 @@
                                                 <img src="{{ asset('storage/foto/' . $db->foto) }}" alt=""
                                                     srcset="" width="70" height="110">
                                             </td>
-                                            <td>{{ $db->id_pegawai }}</td>
+                                            <td>{{ $db->nip }}</td>
                                             <td>{{ $db->jabatan->jabatan }}</td>
                                             <td>{{ $db->alamat }}</td>
                                             <td>{{ $db->no_tlp }}</td>
@@ -215,9 +215,9 @@
                                                           name="nama" required>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label for="id_pegawai">NIP:</label>
-                                                      <input type="number" value="{{ $item->id_pegawai }}" class="form-control" id="id_pegawai"
-                                                          name="id_pegawai" required>
+                                                      <label for="nip">NIP:</label>
+                                                      <input type="number" value="{{ $item->nip }}" class="form-control" id="nip"
+                                                          name="nip" required>
                                                   </div>
                                               </div>
                                               <div class="col-6">
@@ -280,9 +280,9 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
-                                                    @error('id_pegawai')
+                                                    <label for="nip">NIP:</label>
+                                                    <input type="number" class="form-control" id="nip" name="nip">
+                                                    @error('nip')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -324,7 +324,7 @@
                                         @enderror
                                     </div>
                                     <div class="">
-                                        <label class="form-label" for="foto">Fotos:</label>
+                                        <label class="form-label" for="foto">Foto:</label>
                                         <input type="file" name="foto"
                                             class="form-control @error('foto') is-invalid @enderror"
                                             id="previewImage">
@@ -353,6 +353,14 @@
                             $('#tambahModal').modal('show');
                         });
                     </script>
+                    <script>
+                        $(document).ready(function () {
+                            @if (count($errors) > 0)
+                                $('#tambahModal').modal('show'); // Show the modal if there are validation errors
+                            @endif
+                        });
+                     </script>
+
             </body>
 
             </html>

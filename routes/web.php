@@ -67,7 +67,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::put('/updateGaji/{id}', [GajiController::class, 'update'])->name('updateGaji');
     Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
 
-
+    // JABATAN
     Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
     Route::post('/SimpanJabatan', [JabatanController::class, 'store'])->name('SimpanJabatan');
     Route::put('/updateJabatan/{id}', [JabatanController::class, 'update'])->name('updateJabatan');

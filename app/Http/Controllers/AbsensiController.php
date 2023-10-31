@@ -14,9 +14,10 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $absensi = Absensi::all();
+        $pegawai = Pegawai::all();
+        $absensi = Absensi::with('pegawai')->get();
         $user = auth()->user();
-        return view('User.Absensi', compact('absensi', 'user'));
+        return view('User.Absensi', compact('absensi', 'user', 'pegawai'));
     }
 
     public function Absen()
@@ -24,11 +25,11 @@ class AbsensiController extends Controller
         return view('User.Absensi');
     }
 
-
-
     public function create()
     {
-        return view('User.Absensi');
+        $dashboard = Pegawai::all();
+        $absensi = Absensi::with('Pegawai','nip')->get();
+        return view('User.Absensi', compact('absensi'));
     }
 
     /**
@@ -37,21 +38,18 @@ class AbsensiController extends Controller
     public function store(StoreAbsensiRequest $request)
     {
         $this->validate($request, [
-            'id_pegawai' => 'required|gt:0||unique:absensis,id_pegawai',
+            'id_nip' => 'required',
             'tanggal' => 'required',
-            'keterangan' => 'required|max:100'
+            'keterangan' => 'required'
         ], [
-            'id_pegawai.required' => 'NIP tidak boleh kosong!',
-            'id_pegawai.gt' => 'NIP tidak valid !',
-            'id_pegawai.unique' => 'NIP sudah digunakan!',
+            'id_nip.required' => 'NIP tidak boleh kosong!',
             'tanggal.required' => 'tanggal tidak boleh kosong!',
-            'keterangan.required' => 'keterangan tidak boleh kosong!',
-            'keterangan.max' => 'keterangan tidak boleh melebihi 100 karakter!',
+            'keterangan.required' => 'keterangan tidak boleh kosong!'
         ]);
 
 
         $absensi = new Absensi;
-        $absensi->id_pegawai = $request->id_pegawai;
+        $absensi->id_nip = $request->id_nip;
         $absensi->tanggal=$request->tanggal;
         $absensi->keterangan=$request->keterangan;
         $absensi->save();
@@ -82,7 +80,7 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::find($id);
         $absensi->update([
-            'id_pegawai' => $request->input('id_pegawai'),
+            'nip' => $request->input('id_nip'),
             'tanggal' => $request -> input('tanggal'),
             'keterangan' => $request->input('keterangan')
         ]);

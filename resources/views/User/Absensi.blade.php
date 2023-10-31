@@ -156,7 +156,7 @@
                                      @foreach ($absensi as $no => $ab)
                                     <tr>
                                         <td>{{  ++$no }}</td>
-                                        <td>{{ $ab->id_pegawai }}</td>
+                                        <td>{{ $ab->Pegawai->nip }}</td>
                                         <td>{{ $ab->tanggal }}</td>
                                         <td>{{ $ab->keterangan }}</td>
                                         <td class="d-flex">
@@ -196,8 +196,8 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" value="{{ $absen->id_pegawai }}" class="form-control" id="id_pegawai" name="id_pegawai">
+                                                    <label for="id_nip">NIP:</label>
+                                                    <input type="number" value="{{ $absen->pegawai->nip }}" class="form-control" id="id_nip" name="id_nip" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -213,7 +213,6 @@
                                             class="form-control @error('keterangan') is-invalid @enderror"
                                             id="keterangan">{{ $absen->keterangan }}</textarea>
                                         </div>
-                                        @dump($absen->pegawais)
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
@@ -244,11 +243,15 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="id_pegawai">NIP:</label>
-                                                    <input type="number" class="form-control" id="id_pegawai" name="id_pegawai">
-                                                    @error('id_pegawai')
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    @enderror
+                                                    <label for="id_nip" class="form-label">NIP</label>
+                                                    <select class="form-select" name="id_nip" value=" {{ old ('nip') }}" aria-label="Default control example" id="id_nip">
+                                                        @foreach ($pegawai as $nip )
+                                                        <option value="{{ $nip->id }}">{{ $nip->nip }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('id_nip')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -316,6 +319,14 @@
             <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
             <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
             <script src="../assets/demo/demo.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    @if (count($errors) > 0)
+                        $('#tambahModal').modal('show'); // Show the modal if there are validation errors
+                    @endif
+                });
+             </script>
             <script>
                 $(document).ready(function() {
                     // Javascript method's body can be found in assets/js/demos.js

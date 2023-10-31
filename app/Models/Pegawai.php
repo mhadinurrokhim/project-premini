@@ -15,7 +15,7 @@ class Pegawai extends Model
     protected $fillable=[
         'nama',
         'foto',
-        'id_pegawai',
+        'nip',
         'id_jabatan',
         'gaji',
         'alamat',
@@ -28,5 +28,9 @@ class Pegawai extends Model
     public function absensi(): HasMany
     {
         return $this->hasMany(Absensi::class);
+    }
+    public function gaji()
+    {
+        return $this->belongsTo(Gaji::class);
     }
 }

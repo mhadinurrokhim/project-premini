@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use App\Models\Pegawai;
+use App\Models\Gaji;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,10 +17,11 @@ class PegawaiController extends Controller
      */
     public function index()
     {
+        $gaji = Gaji::all();
         $jabatans = Jabatan::all();
-        $dashboard = pegawai::with('jabatan')->get();
+        $dashboard = pegawai::with('jabatan','gaji')->get();
         $user = auth()->user();
-        return view('User.Dashboard', compact('dashboard', 'user','jabatans'));
+        return view('User.Dashboard', compact('dashboard', 'user','jabatans','gaji'));
     }
 
     /**
@@ -27,8 +29,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
+        $dashboard = Gaji::all();
         $dashboard = Jabatan::all();
-        $dashboard = pegawai::with('jabatans','jabatan')->get();
+        $dashboard = pegawai::with('jabatans','jabatan','')->get();
         return view('User.Dashboard', compact('dashboard'));
     }
 
@@ -41,7 +44,7 @@ class PegawaiController extends Controller
         [
             'nama' => 'required',
             'foto' => 'required',
-            'id_pegawai' => 'required|gt:0|unique:pegawais,id_pegawai',
+            'nip' => 'required|gt:0||unique:pegawais,nip',
             'id_jabatan' => 'required',
             'gaji' => 'required',
             'alamat' => 'required|max:100',
@@ -49,9 +52,9 @@ class PegawaiController extends Controller
         ], [
             'nama.required' => 'nama tidak boleh kosong!',
             'foto.required' => 'foto tidak boleh kosong!',
-            'id_pegawai.required' => 'NIP tidak boleh kosong!',
-            'id_pegawai.gt' => 'NIP tidak valid !',
-            'id_pegawai.unique' => 'NIP sudah digunakan!',
+            'nip.required' => 'NIP tidak boleh kosong!',
+            'nip.gt' => 'NIP tidak valid !',
+            'nip.unique' => 'NIP sudah digunakan!',
             'id_jabatan.required' => 'jabatan tidak boleh kosong!',
             'gaji.required' => 'gaji tidak boleh kosong!',
             'alamat.required' => 'alamat tidak boleh kosong!',
@@ -69,7 +72,7 @@ class PegawaiController extends Controller
             Pegawai::create([
                 'nama' => $request->nama,
                 'foto' => $fileName,
-                'id_pegawai' => $request->id_pegawai,
+                'nip' => $request->nip,
                 'id_jabatan' => $request->id_jabatan,
                 'gaji' => $request->gaji,
                 'alamat' => $request->alamat,
@@ -106,7 +109,7 @@ class PegawaiController extends Controller
 
         $pegawai->update([
             'nama' => $request->input('nama'),
-            'id_pegawai' => $request->input('id_pegawai'),
+            'nip' => $request->input('nip'),
             'jabatan' => $request->input('jabatan'),
             'gaji' => $request->input('gaji'),
             'alamat' => $request->input('alamat'),
