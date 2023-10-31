@@ -96,13 +96,13 @@
         @csrf
         <h1>Kirim Email</h1>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email Address</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="floatingInput" class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" id="floatingInput" aria-describedby="emailHelp">
             @if ($errors->has('email'))
             <div class="invalid-feedback" id="validasi">{{ $errors->first('email') }}</div>
             @endif
           </div>
-          <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</button>
+          <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</button>
         </div>
       </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
