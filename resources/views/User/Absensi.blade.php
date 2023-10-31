@@ -50,41 +50,42 @@
                     {{$user->name}}
                 </span>
             </div>
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
-            <li>
-                <a href="{{ route('Dashboard') }}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>PEGAWAI</p>
-                </a>
-            </li>
-            <li class="active">
-                <a href="{{ route('Absensi') }}">
-                    <i class="now-ui-icons ui-1_calendar-60"></i>
-                    <p>ABSENSI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Gaji') }}">
-                    <i class="now-ui-icons business_money-coins"></i>
-                    <p>GAJI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Jabatan') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>JABATAN</p>
-                </a>
-            </li>
-            <li>
-                <a href="/logout">
-                    <i class="now-ui-icons arrows-1_minimal-left"></i>
-                    <p>Log out</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+            <div class="sidebar-wrapper" id="sidebar-wrapper">
+                <ul class="nav">
+                    <li>
+                        <a href="{{ route('Dashboard') }}">
+                            <i class="now-ui-icons users_single-02"></i>
+                            <p>PEGAWAI</p>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ route('Absensi') }}">
+                            <i class="now-ui-icons ui-1_calendar-60"></i>
+                            <p>ABSENSI</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Gaji') }}">
+                            <i class="now-ui-icons business_money-coins"></i>
+                            <p>GAJI</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Jabatan') }}">
+                            <i class="now-ui-icons design_bullet-list-67"></i>
+                            <p>JABATAN</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <i class="now-ui-icons arrows-1_minimal-left"></i>
+                            <p>Log out</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="main-panel" id="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -100,12 +101,11 @@
                         <a class="navbar-brand" href="#pablo">ABSENSI</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                         <span class="navbar-toggler-bar navbar-kebab"></span>
                     </button>
-
                 </div>
             </nav>
             <!-- End Navbar -->

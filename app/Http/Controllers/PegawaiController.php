@@ -41,7 +41,7 @@ class PegawaiController extends Controller
         [
             'nama' => 'required',
             'foto' => 'required',
-            'id_pegawai' => 'required|gt:0||unique:pegawais,id_pegawai',
+            'id_pegawai' => 'required|gt:0|unique:pegawais,id_pegawai',
             'id_jabatan' => 'required',
             'gaji' => 'required',
             'alamat' => 'required|max:100',
