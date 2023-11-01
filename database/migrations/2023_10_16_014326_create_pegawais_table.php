@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('nip');
             $table->foreignId('id_jabatan');
-            $table->decimal('gaji', 10, 2);
+            $table->string('gaji');
             $table->string('alamat');
             $table->string('no_tlp');
             $table->timestamps();

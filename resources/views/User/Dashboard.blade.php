@@ -140,7 +140,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Isi data anda</h5>
+                            <h5 class="card-title">Isi data Pegawai</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
@@ -274,14 +274,14 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="nama">Nama:</label>
-                                                    <input type="text" class="form-control" id="nama" name="nama">
+                                                    <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
                                                     @error('nama')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nip">NIP:</label>
-                                                    <input type="number" class="form-control" id="nip" name="nip">
+                                                    <input type="number" class="form-control" id="nip" name="nip" value="{{ old('nip') }}">
                                                     @error('nip')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -301,7 +301,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="no_tlp">No Tlp:</label>
-                                                    <input type="number" class="form-control" id="no_tlp" name="no_tlp">
+                                                    <input type="number" class="form-control" id="no_tlp" name="no_tlp"  value="{{ old('no_tlp') }}">
                                                     @error('no_tlp')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror
@@ -311,14 +311,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="gaji">Gaji:</label>
-                                        <input type="number" class="form-control" id="gaji" name="gaji">
+                                        <input type="number" class="form-control" id="gaji" name="gaji"  value="{{ old('gaji') }}">
                                         @error('gaji')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="alamat">Alamat:</label>
-                                        <textarea class="form-control" id="alamat" rows="4" name="alamat"></textarea>
+                                        <textarea class="form-control" id="alamat" rows="4" name="alamat" value="{{ old('alamat') }}"></textarea>
                                         @error('alamat')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror

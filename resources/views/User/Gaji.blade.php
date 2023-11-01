@@ -236,7 +236,7 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="nip">NIP:</label>
-                                                    <input type="number" class="form-control" id="nip" name="nip">
+                                                    <input type="number" class="form-control" id="nip" name="nip" value="{{ old('nip') }}">
                                                     @error('nip')
                                                         <p class="text-danger">{{ $message }}</p>
                                                     @enderror

@@ -96,12 +96,12 @@
         @csrf
         <h1>Kirim Email</h1>
         <div class="mb-3">
-            <label for="floatingInput" class="form-label">Email Address</label>
-            <input type="email" name="email" class="form-control" id="floatingInput" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label{{ $errors->has('email') ? ' text-danger' : '' }}">Email Address</label>
+            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
             @if ($errors->has('email'))
             <div class="invalid-feedback" id="validasi">{{ $errors->first('email') }}</div>
             @endif
-          </div>
+        </div>
           <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Kirim Email</button>
         </div>
       </form>

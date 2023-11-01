@@ -17,11 +17,10 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $gaji = Gaji::all();
         $jabatans = Jabatan::all();
-        $dashboard = pegawai::with('jabatan','gaji')->get();
+        $dashboard = pegawai::with('jabatan')->get();
         $user = auth()->user();
-        return view('User.Dashboard', compact('dashboard', 'user','jabatans','gaji'));
+        return view('User.Dashboard', compact('dashboard', 'user','jabatans'));
     }
 
     /**
@@ -29,9 +28,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $dashboard = Gaji::all();
         $dashboard = Jabatan::all();
-        $dashboard = pegawai::with('jabatans','jabatan','')->get();
+        $dashboard = pegawai::with('jabatans','jabatan')->get();
         return view('User.Dashboard', compact('dashboard'));
     }
 
@@ -62,7 +60,7 @@ class PegawaiController extends Controller
             'no_tlp.required' => 'no tlp tidak boleh kosong!',
             'no_tlp.numeric' => 'no tlp harus berupa angka!',
             'no_tlp.gt' => 'no tlp tidak valid !',
-            'no_tlp.digits_between' => 'no tlp harus memiliki panjang antara 12 hingga 15 digit!',
+            'no_tlp.digits_between' => 'no tlp harus memiliki panjang antara 11 hingga 15 digit!',
         ]);
 
             $file = $request->file('foto');

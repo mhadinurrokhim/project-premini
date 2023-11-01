@@ -96,40 +96,32 @@
         @csrf
         <h1>Daftar Terlebih dahulu</h1>
         <div class="mb-3">
-            <label for="exampleInputtext1" class="form-label">Name</label>
+            <label for="exampleInputtext1" class="form-label{{ $errors->has('name') ? ' text-danger' : '' }}">Name</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="exampleInputtext1" aria-describedby="textHelp">
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            @if ($errors->has('name'))
+            <div class="invalid-feedback" id="validasi">{{ $errors->first('name') }}</div>
+            @endif
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email Address</label>
+            <label for="exampleInputEmail1" class="form-label{{ $errors->has('email') ? ' text-danger' : '' }}">Email Address</label>
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            @if ($errors->has('email'))
+            <div class="invalid-feedback" id="validasi">{{ $errors->first('email') }}</div>
+            @endif
         </div>
         <div class="mb-4">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <label for="exampleInputPassword1" class="form-label{{ $errors->has('password') ? ' text-danger' : '' }}">Password</label>
             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="exampleInputPassword1">
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            @if ($errors->has('password'))
+            <div class="invalid-feedback" id="validasi">{{ $errors->first('password') }}</div>
+            @endif
         </div>
         <div class="mb-4">
-            <label for="exampleInputPassword2" class="form-label">Konfirmasi Password</label>
+            <label for="exampleInputPassword2" class="form-label{{ $errors->has('password_confirmation') ? ' text-danger' : '' }}">Konfirmasi Password</label>
             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="exampleInputPassword2">
-            @error('password_confirmation')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            @if ($errors->has('password_confirmation'))
+            <div class="invalid-feedback" id="validasi">{{ $errors->first('password_confirmation') }}</div>
+            @endif
         </div>
 
         <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Register</button>
