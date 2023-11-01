@@ -16,7 +16,7 @@ class JabatanController extends Controller
     {
         $jabatan = Jabatan::all();
         $user = auth()->user();
-        return view('User.Jabatan',compact('jabatan', 'user'));
+        return view('Admin.Jabatan',compact('jabatan', 'user'));
     }
 
     /**
@@ -24,7 +24,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        return view('User.Jabatan');
+        return view('Admin.Jabatan');
     }
 
     /**
@@ -54,7 +54,7 @@ class JabatanController extends Controller
      */
     public function show(Jabatan $jabatan)
     {
-        return view('User.Jabatan', compact('jabatan'));
+        return view('Admin.Jabatan', compact('jabatan'));
     }
 
     /**

@@ -53,24 +53,24 @@
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
             <li>
-                <a href="{{ route('Dashboard') }}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>PEGAWAI</p>
+                <a href="{{ route('Konfirmasi') }}">
+                    <i class="fas fa-check"></i>
+                    <p>DATA PEGAWAI</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('Absensi') }}">
-                    <i class="now-ui-icons ui-1_calendar-60"></i>
-                    <p>ABSENSI</p>
+                <a href="{{ route('Check') }}">
+                    <i class="now-ui-icons ui-1_bell-53"></i>
+                    <p>Check Absensi</p>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{ route('Gaji') }}">
                     <i class="now-ui-icons business_money-coins"></i>
                     <p>GAJI</p>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{ route('Jabatan') }}">
                     <i class="now-ui-icons design_bullet-list-67"></i>
                     <p>JABATAN</p>
@@ -97,7 +97,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo">JABATAN</a>
+                        <a class="navbar-brand" href="#pablo">GAJI</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,30 +139,29 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">JABATAN</h5>
+                            <h5 class="card-title">GAJI</h5>
                             <button class="btn btn-outline-warning" id="tambahButton">Tambah</button>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Jabatan</th>
-                                        <th scope="col">Gaji</th>
+                                        <th scope="col">NIP</th>
+                                        <th scope="col">gaji</th>
+                                        <th scope="col">Tanggal Gajian</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
 
-                                    @php
-                                    $no = 1;
-                                    @endphp
-                                    @foreach($jabatan as $iteration => $jb)
+                                    @foreach($gaji as $iteration => $gj)
                                     <tr>
-                                        <td>{{$iteration + 1 }}</td>
-                                        <td>{{ $jb->jabatan }}</td>
-                                        <td>Rp {{ number_format($jb->gaji, 0, ',', '.') }}</td>
+                                        <td>{{ $iteration + 1 }}</td>
+                                        <td>{{ $gj->nip }}</td>
+                                        <td>Rp {{ number_format($gj->gaji, 0, ',', '.') }}</td>
+                                        <td>{{ $gj->tanggal_pembayaran }}</td>
                                         <td class="d-flex">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $jb->id }}" style="margin-right: 10px;">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $gj->id }}" style="margin-right: 10px;">
                                                 Edit
                                             </button>
-                                            <form action="/deletejabatan/{{ $jb->id }}" method="post">
+                                            <form action="/deletegaji/{{ $gj->id }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger" id="tambahButton" onclick="return confirm('Apakah anda yakin ingin menghapus data ini ?')">
@@ -171,98 +170,106 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                @endforeach
                                 </thead>
                             </table>
                         </div>
                     </div>
                 </div>
 
- <!-- Modal Edit -->
- @foreach ($jabatan as $jbt)
- <div class="modal fade" id="exampleModal{{ $jbt->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-       <div class="modal-content">
-           <div class="modal-header">
-               <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
-               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-             </div>
-             <div class="modal-body">
-                 <form action="/updateJabatan/{{$jbt->id}}" enctype="multipart/form-data" method="POST">
-                     @csrf
-                     @method('PUT')
-                     <div>
-                         <div class="container">
-                             <div class="row">
-                                 <div class="col-6">
-                                     <div class="form-group">
-                                         <label for="jabatan">Jabatan:</label>
-                                         <input type="text" value="{{ $jbt->jabatan }}" class="form-control" id="jabatan" name="jabatan">
-                                     </div>
-                                 </div>
-                                 <div class="col-6">
-                                     <div class="form-group">
-                                         <label for="gaji">Gaji:</label>
-                                         <input type="number" value="{{ $jbt->gaji }}" class="form-control" id="gaji" name="gaji">
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="modal-footer">
-                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                                 <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </form>
- </div>
-  @endforeach
 
-<!-- Modal Tambah-->
-<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
- <div class="modal-dialog" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <form action="{{ route('SimpanJabatan') }}" method="post" enctype="multipart/form-data">
-             @csrf
-             <div class="modal-body">
-                 <div class="container">
-                     <div class="row">
-                         <div class="col-6">
-                             <div class="form-group">
-                                 <label for="jabatan">Jabatan:</label>
-                                 <input type="text" class="form-control" id="jabatan" name="jabatan">
-                                 @error('jabatan')
-                                     <p class="text-danger">{{ $message }}</p>
-                                 @enderror
-                             </div>
-                         </div>
-                         <div class="col-6">
-                             <div class="form-group">
-                                 <label for="gaji">Gaji:</label>
-                                 <input type="number" class="form-control" id="gaji" name="gaji">
-                                 @error('gaji')
-                                     <p class="text-danger">{{ $message }}</p>
-                                 @enderror
-                             </div>
-                         </div>
-                     </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
-                             <button type="submit" class="btn btn-outline-warning">Simpan</button>
-                         </div>
-                     </div>
-                 </div>
-             </form>
-         </div>
-     </div>
- </div>
-</div>
+                    <!-- Modal Edit -->
+                    @foreach ($gaji as $ga)
+                    <div class="modal fade" id="exampleModal{{$ga->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pegawai</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            <div class="modal-body">
+                                <form method="POST" action="updateGaji/{{$ga->id}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="coll-6">
+                                                <div class="form-group">
+                                                    <label for="nip">NIP:</label>
+                                                    <input type="number" value="{{ $ga->nip }}" class="form-control" id="nip" name="nip">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="gaji">gaji:</label>
+                                                    <input type="number" value="{{ $ga->gaji }}" class="form-control" id="gaji" name="gaji">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tanggal_pembayarn">Tanggal Bayaran:</label>
+                                            <input type="date" value="{{ $ga->tanggal_pembayaran }}" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                <!-- Modal Tambah-->
+                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Gaji</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('SimpanGaji') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="nip">NIP:</label>
+                                                    <input type="number" class="form-control" id="nip" name="nip" value="{{ old('nip') }}">
+                                                    @error('nip')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="gaji">gaji:</label>
+                                                    <input type="number" class="form-control" id="gaji" name="gaji">
+                                                    @error('gaji')
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                                <label for="tanggal_pembayaran">Tanggal Gajian:</label>
+                                                <input type="date" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran">
+                                                @error('tanggal_pembayaran')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-outline-warning">Simpan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -278,6 +285,8 @@
                             @endif
                         });
                      </script>
+
+
                     <script>
                         // Handle button click to show modal
                         document.getElementById("tambahButton").addEventListener("click", function() {

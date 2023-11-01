@@ -15,7 +15,7 @@ class GajiController extends Controller
     {
         $gaji = Gaji::all();
         $user = auth()->user();
-        return view('User.Gaji', compact('gaji', 'user'));
+        return view('Admin.Gaji', compact('gaji', 'user'));
     }
 
     /**
@@ -23,7 +23,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        return view('User.Gaji');
+        return view('Admin.Gaji');
     }
 
     /**
@@ -59,7 +59,7 @@ class GajiController extends Controller
      */
     public function show(gaji $gaji)
     {
-        return view('User.Gaji', compact('gaji'));
+        return view('Admin.Gaji', compact('gaji'));
     }
 
     /**
@@ -67,7 +67,7 @@ class GajiController extends Controller
      */
     public function edit(gaji $gaji)
     {
-        return view('User.Gaji', compact('gaji'));
+        return view('Admin.Gaji', compact('gaji'));
     }
 
     /**

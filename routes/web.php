@@ -42,6 +42,18 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::get('/Konfirmasi', [KonfirmasiController::class,'index'])->name('Konfirmasi');
     Route::get('/Check', [AdminCheckController::class, 'Check'])->name('Check');
 
+    //GAJI
+    Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
+    Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
+    Route::put('/updateGaji/{id}', [GajiController::class, 'update'])->name('updateGaji');
+    Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
+
+    // JABATAN
+    Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
+    Route::post('/SimpanJabatan', [JabatanController::class, 'store'])->name('SimpanJabatan');
+    Route::put('/updateJabatan/{id}', [JabatanController::class, 'update'])->name('updateJabatan');
+    Route::delete('/deletejabatan/{id}', [JabatanController::class, 'destroy']);
+    
 });
 
 
@@ -62,17 +74,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
     Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy']);
 
 
-    //GAJI
-    Route::get('/Gaji', [GajiController::class, 'index'])->name('Gaji');
-    Route::post('/create', [GajiController::class, 'store'])->name('SimpanGaji');
-    Route::put('/updateGaji/{id}', [GajiController::class, 'update'])->name('updateGaji');
-    Route::delete('/deletegaji/{id}', [GajiController::class, 'destroy']);
-
-    // JABATAN
-    Route::get('/Jabatan', [JabatanController::class, 'index'])->name('Jabatan');
-    Route::post('/SimpanJabatan', [JabatanController::class, 'store'])->name('SimpanJabatan');
-    Route::put('/updateJabatan/{id}', [JabatanController::class, 'update'])->name('updateJabatan');
-    Route::delete('/deletejabatan/{id}', [JabatanController::class, 'destroy']);
 });
 
 
