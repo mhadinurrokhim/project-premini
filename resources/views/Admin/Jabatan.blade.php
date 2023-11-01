@@ -64,12 +64,6 @@
                     <p>Check Absensi</p>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('Gaji') }}">
-                    <i class="now-ui-icons business_money-coins"></i>
-                    <p>GAJI</p>
-                </a>
-            </li>
             <li class="active">
                 <a href="{{ route('Jabatan') }}">
                     <i class="now-ui-icons design_bullet-list-67"></i>

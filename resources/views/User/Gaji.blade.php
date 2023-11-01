@@ -53,27 +53,21 @@
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
             <li>
-                <a href="{{ route('Konfirmasi') }}">
-                    <i class="fas fa-check"></i>
-                    <p>DATA PEGAWAI</p>
+                <a href="{{ route('Dashboard') }}">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>PEGAWAI</p>
                 </a>
             </li>
             <li>
-                <a href="{{ route('Check') }}">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>Check Absensi</p>
+                <a href="{{ route('Absensi') }}">
+                    <i class="now-ui-icons ui-1_calendar-60"></i>
+                    <p>ABSENSI</p>
                 </a>
             </li>
             <li class="active">
                 <a href="{{ route('Gaji') }}">
                     <i class="now-ui-icons business_money-coins"></i>
                     <p>GAJI</p>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('Jabatan') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>JABATAN</p>
                 </a>
             </li>
             <li>
