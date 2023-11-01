@@ -136,7 +136,7 @@ class PegawaiController extends Controller
             }
         }
 
-        return redirect()->route('Dashboard')->with('success', 'Pegawai berhasil diperbarui.');
+        return redirect()->route('Dashboard')->with('success', 'data berhasil diperbarui.');
     }
 
 
@@ -156,7 +156,7 @@ class PegawaiController extends Controller
             // Hapus rekaman dari database
             $pegawai->delete();
 
-            return redirect()->route('Dashboard')->with('success', 'Pegawai deleted successfully');
+            return redirect()->route('Dashboard')->with('success', 'data berhasil di hapus');
         }
 
         return redirect()->route('Dashboard')->with('error', 'Pegawai not found');

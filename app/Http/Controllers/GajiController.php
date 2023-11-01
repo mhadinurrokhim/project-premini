@@ -82,7 +82,7 @@ class GajiController extends Controller
             'tanggal_pembayaran' => $request->input('tanggal_pembayaran')
         ]);
 
-        return back()->with('success', 'Gaji update successfully.');
+        return back()->with('success', 'Data berhasil di perbarui.');
     }
 
     /**
@@ -93,6 +93,6 @@ class GajiController extends Controller
         $gaji = gaji::find($id);
         $gaji->delete();
 
-        return redirect()->route('Gaji')->with('success', 'Pegawai deleted successfully');
+        return redirect()->route('Gaji')->with('success', 'Data berhasil di hapus');
     }
 }

@@ -32,7 +32,7 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'jabatan'=>'required',
             'gaji'=>'required|gte:0'
         ],[
@@ -76,7 +76,7 @@ class JabatanController extends Controller
             'gaji' => $request->input('gaji')
         ]);
 
-        return back()->with('success', 'Jabatan update successfully.');
+        return back()->with('success', 'Data berhasil di perbarui.');
     }
 
     /**
@@ -87,6 +87,6 @@ class JabatanController extends Controller
         $jabatan = Jabatan::find($id);
         $jabatan->delete();
 
-        return redirect()->route('Jabatan')->with('success', 'Pegawai deleted successfully');
+        return redirect()->route('Jabatan')->with('success', 'data berhasil di hapus');
     }
 }

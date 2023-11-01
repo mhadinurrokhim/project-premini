@@ -85,7 +85,7 @@ class AbsensiController extends Controller
             'keterangan' => $request->input('keterangan')
         ]);
 
-        return redirect()->route('Absensi')->with('success', 'Absensi update successfully.');
+        return redirect()->route('Absensi')->with('success', 'Data berhasil di perbarui.');
     }
 
     /**
@@ -95,7 +95,7 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::find($id);
         $absensi->delete();
-        return back()->with('success', 'Absensi deleted successfully');
+        return back()->with('success', 'Data berhasil di hapus');
     }
 
 }
